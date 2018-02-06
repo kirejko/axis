@@ -1,0 +1,48 @@
+/header[class="topbar is_stuck" style="position: fixed; top: 0px; width: 1440px;"]
+header.topbar
+  nav.navbar.top-navbar.navbar-expand-md.navbar-light
+    .navbar-header
+      a.navbar-brand href="#"
+        b
+          i.zmdi.zmdi-view-dashboard.zmdi-hc-2x.zmdi-hc-fw.light-logo.py-3
+    .navbar-collapse
+      ul.navbar-nav.mr-auto.mt-md-0
+        li.nav-item.hidden-sm-down.search-box
+          a.nav-link.hidden-sm-down.text-muted.waves-effect.waves-dark href="javascript:void(0)"
+            i.ti-search
+          form.app-search
+            input.form-control placeholder=('Search & enter') type="text" /
+            a.srh-btn
+              i.ti-close
+      ul.navbar-nav.my-lg-0
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle.text-muted.waves-effect.waves-dark data-toggle="dropdown" href=""
+            = image_tag(current_user.avatar.url, class: 'profile-pic', alt: current_user)
+          .dropdown-menu.dropdown-menu-right.scale-up
+            ul.dropdown-user
+              li
+                .dw-user-box
+                  .u-img
+                    = image_tag(current_user.avatar.url, alt: current_user)
+                  .u-text
+                    h4
+                      = current_user
+                    p.text-muted
+                      = current_user.profile.position
+                    / a.btn.btn-rounded.btn-danger.btn-md href="#"
+                    /   i.ti-user
+                    /   | View profile
+              li.divider role="separator"
+              li
+                a href="#"
+                  i.ti-user
+                  | &nbsp;My Profile
+              li
+                a href="#"
+                  i.ti-settings
+                  | &nbsp;Account Setting
+              li.divider role="separator"
+              li
+                = link_to destroy_user_session_path do
+                  i.ti-power-off
+                  | &nbsp;Logout

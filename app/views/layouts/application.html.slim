@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title
+      | Axis
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', integrity: true
+
+  body.fix-header.card-no-border.logo-center
+    #main-wrapper
+      = render 'layouts/header'
+      = render 'layouts/sidebar'
+      .page-wrapper
+        .container-fluid
+          = yield
+
+        .footer
+          |  © #{Date.current.year} Axis by AMgrade.com
+
+    = javascript_include_tag :application, media: 'all', integrity: true
+    = javascript_pack_tag 'application', media: 'all', integrity: true
