@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/bootstrap-ruby/bootstrap_form.git
+  revision: 8a7188fbb2d55bbd6c64f9130e7882eea56bfee9
+  branch: master
+  specs:
+    bootstrap_form (4.0.0.dev)
+      rails (>= 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -319,6 +327,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap (~> 4.0.0)
+  bootstrap_form!
   capistrano-rails
   carrierwave (~> 1.2)
   dalli (~> 2.7, >= 2.7.6)

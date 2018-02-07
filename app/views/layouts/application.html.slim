@@ -8,14 +8,17 @@ html
 
   body.fix-header.card-no-border.logo-center
     #main-wrapper
-      = render 'layouts/header'
-      = render 'layouts/sidebar'
+      = render partial: 'layouts/loader'
+      = render partial: 'layouts/header'
+      = render partial: 'layouts/sidebar'
       .page-wrapper
         .container-fluid
+          = render partial: 'shared/flash' unless flash.empty?
           = yield
 
         .footer
-          |  © #{Date.current.year} Axis by AMgrade.com
+          |  © #{Date.current.year} Axis by
+          =< link_to 'AMgrade.com', 'https://amgrade.com'
 
     = javascript_include_tag :application, media: 'all', integrity: true
     = javascript_pack_tag 'application', media: 'all', integrity: true

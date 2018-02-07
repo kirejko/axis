@@ -11,13 +11,14 @@ class User < ApplicationRecord
   enum role: ROLES
 
   has_one :profile, inverse_of: :user, dependent: :destroy
+  accepts_nested_attributes_for :profile
 
   # Downcase email before saving model
   before_save :downcase_email
 
   # E-mail validation
-  validates :email, presence: true, case_sensitive: false, email: true
-  validates :email, uniqueness: true, on: :create
+  validates :email, presence: true, uniqueness: { case_sensitive: false }, email: true, if: -> { email.present? }
+  validates :password, confirmation: true, length: { minimum: 8 }
 
   # User Avatar Validation
   validates_integrity_of  :avatar

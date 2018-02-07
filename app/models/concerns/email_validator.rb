@@ -5,6 +5,9 @@ require 'mail'
 # Custom email validation
 class EmailValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
+
+    return false unless value.present?
+
     begin
       m = Mail::Address.new(value)
       r = m.domain.present? && m.domain.match('\.') && m.address == value

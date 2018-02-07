@@ -15,6 +15,9 @@ gem 'rails', '~> 5.1.4'
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
+gem 'bootstrap_form',
+    git: 'https://github.com/bootstrap-ruby/bootstrap_form.git',
+    branch: 'master'
 gem 'sass-rails', '~> 5.0'
 gem 'slim-rails', '~> 3.1', '>= 3.1.3'
 gem 'uglifier', '>= 1.3.0'

@@ -1,0 +1,24 @@
+.row.page-titles
+  .col-md-5.col-8.align-self-center
+    h3.text-themecolor.m-b-0.m-t-0
+      - if action_name === 'new'
+        | Create new profile
+      - elsif action_name === 'edit'
+        | Edit existing profile
+      - else
+        | People directory
+    ol.breadcrumb
+      li.breadcrumb-item
+        a href=root_path  Home
+      li.breadcrumb-item
+        = link_to_if([:new, :edit].include?(action_name), 'People', users_path)
+      - if action_name === 'new'
+        li.breadcrumb-item New
+      - elsif action_name === 'edit'
+        li.breadcrumb-item Edit
+
+  - if policy(User.new).create? && action_name != 'new'
+    .col-md-7.col-4.align-self-center
+      .d-flex.m-t-10.justify-content-end
+        a.right-side-toggle.waves-effect.waves-light.btn-danger.btn.btn-circle.btn-sm.pull-right.m-l-10 href=new_user_path
+          i.fas.fa-user-plus.text-white

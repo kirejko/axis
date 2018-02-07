@@ -1,0 +1,75 @@
+= render partial: 'users/links'
+
+= bootstrap_form_for @user, html: { class: 'form-material m-t-10 row', multipart: true } do |f|
+
+  .col-md-4.col-xs-12
+    .ribbon-wrapper.card
+      .ribbon.ribbon-default
+        | Photo & gender
+      .ribbon-content
+        small
+          code.text-info Allows JPG(JPEG) and PNG. Max allowed size is 2Mb.
+
+        = f.file_field :avatar, hide_label: true,
+                class: 'dropify',
+                wrapper: { class: 'm-t-20' }
+
+        = f.fields_for :profile do |pf|
+          = pf.form_group :gender, label: { text: 'Gender', class: 'm-r-10' }, class: 'm-b-5' do
+            = pf.radio_button :gender, 0, label: 'Male', inline: true, checked: true
+            = pf.radio_button :gender, 1, label: 'Female', inline: true
+
+  .col-md-4.col-xs-12
+    .ribbon-wrapper.card
+      .ribbon.ribbon-default
+        | Account details
+      .ribbon-content
+        small
+          code.text-info Please note that all fields are mandatory
+
+        = f.text_field :email, hide_label: true,
+                autofocus: true,
+                wrapper: { class: 'm-t-25' },
+                autocomplete: 'off',
+                placeholder: 'Corporate E-mail',
+                help: 'Must be in @amgrade.com domain'
+
+        = f.password_field :password, hide_label: true,
+                autocomplete: 'off',
+                placeholder: 'Password',
+                help: 'Must be at least 8 characters long'
+
+        = f.password_field :password_confirmation, hide_label: true,
+                autocomplete: 'off',
+                placeholder: 'Confirm password',
+                help: 'Must match password field'
+
+
+  .col-md-4.col-xs-12
+    .ribbon-wrapper.card
+      .ribbon.ribbon-default
+        | Personal details
+      .ribbon-content
+        small
+          code.text-info Please note that all fields are mandatory
+
+        = f.fields_for :profile do |pf|
+          = pf.text_field :last_name, hide_label: true,
+                  wrapper: { class: 'm-t-25' },
+                  autocomplete: 'off',
+                  placeholder: 'Last name',
+                  help: 'Russian family name'
+
+          = pf.text_field :first_name, hide_label: true,
+                  autocomplete: 'off',
+                  placeholder: 'First name',
+                  help: 'Russian given name'
+
+          = pf.text_field :middle_name, hide_label: true,
+                  autocomplete: 'off',
+                  placeholder: 'Middle name',
+                  help: "Russian father's name"
+
+  .col-md-12.col-xs-12
+    = f.button :submit, class: 'btn waves-effect waves-light btn-block btn-info' do
+      | Create profile

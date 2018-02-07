@@ -1,6 +1,6 @@
 = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal form-material' }) do |f|
 
-  a href="javascript:void(0)" class="text-center db"
+  a.text-center.db href="javascript:void(0)"
     b
       i.zmdi.zmdi-view-dashboard.zmdi-hc-2x.zmdi-hc-fw.light-logo.py-3
 
@@ -19,7 +19,7 @@
           = f.check_box :remember_me
           = f.label :remember_me
 
-        - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+        - if devise_mapping.recoverable? && controller_name != :passwords
           a#to-recover.text-dark.float-sm-right href=new_password_path(resource_name)
             i.zmdi.zmdi-lock-outline.m-r-5
             | Forgot pwd?

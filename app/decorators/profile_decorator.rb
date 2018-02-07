@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Profile decorator
-class ProfileDecorator < ApplicationDecorator
+class ProfileDecorator < Draper::Decorator
   delegate_all
 
   def position

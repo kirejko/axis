@@ -12,6 +12,9 @@ $(function () {
     jQuery(document).on('click', '.mega-dropdown', function (e) {
         e.stopPropagation()
     });
+
+  $('.dropify').dropify();
+
     // ============================================================== 
     // This is for the top header part and sidebar part
     // ==============================================================  
