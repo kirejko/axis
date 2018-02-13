@@ -2,6 +2,14 @@
 
 = bootstrap_form_for @user, html: { class: 'form-material m-t-10 row', multipart: true } do |f|
 
+  - if @user.errors.any?
+    .col-md-12
+      .ribbon-vwrapper.card
+        .ribbon.ribbon-danger.ribbon-vertical-l
+          i.fas.fa-exclamation-triangle
+        .ribbon-content
+          == f.error_summary
+
   .col-md-4.col-xs-12
     .ribbon-wrapper.card
       .ribbon.ribbon-default
@@ -11,13 +19,9 @@
           code.text-info Allows JPG(JPEG) and PNG. Max allowed size is 2Mb.
 
         = f.file_field :avatar, hide_label: true,
-                class: 'dropify',
-                wrapper: { class: 'm-t-20' }
-
-        = f.fields_for :profile do |pf|
-          = pf.form_group :gender, label: { text: 'Gender', class: 'm-r-10' }, class: 'm-b-5' do
-            = pf.radio_button :gender, 0, label: 'Male', inline: true, checked: true
-            = pf.radio_button :gender, 1, label: 'Female', inline: true
+            class: 'dropify',
+            data: { height: 225 },
+            wrapper: { class: 'm-t-20' }
 
   .col-md-4.col-xs-12
     .ribbon-wrapper.card
@@ -25,50 +29,133 @@
         | Account details
       .ribbon-content
         small
-          code.text-info Please note that all fields are mandatory
+          code.text-info Used as account credentials
 
         = f.text_field :email, hide_label: true,
-                autofocus: true,
-                wrapper: { class: 'm-t-25' },
-                autocomplete: 'off',
-                placeholder: 'Corporate E-mail',
-                help: 'Must be in @amgrade.com domain'
+            autofocus: true,
+            required: true,
+            wrapper: { class: 'm-t-25' },
+            autocomplete: 'off',
+            placeholder: '* Corporate E-mail',
+            help: 'Must be in @amgrade.com domain'
 
         = f.password_field :password, hide_label: true,
-                autocomplete: 'off',
-                placeholder: 'Password',
-                help: 'Must be at least 8 characters long'
+            autocomplete: 'off',
+            required: true,
+            placeholder: '* Password',
+            help: 'Must be at least 8 characters long'
 
         = f.password_field :password_confirmation, hide_label: true,
-                autocomplete: 'off',
-                placeholder: 'Confirm password',
-                help: 'Must match password field'
+            autocomplete: 'off',
+            required: true,
+            placeholder: '* Confirm password',
+            help: 'Must match password field'
 
 
   .col-md-4.col-xs-12
     .ribbon-wrapper.card
       .ribbon.ribbon-default
-        | Personal details
+        | User name
       .ribbon-content
         small
-          code.text-info Please note that all fields are mandatory
+          code.text-info First, middle and last names
 
         = f.fields_for :profile do |pf|
           = pf.text_field :last_name, hide_label: true,
-                  wrapper: { class: 'm-t-25' },
-                  autocomplete: 'off',
-                  placeholder: 'Last name',
-                  help: 'Russian family name'
+              wrapper: { class: 'm-t-25' },
+              autocomplete: 'off',
+              required: true,
+              placeholder: '* Last name',
+              help: 'Family name'
 
           = pf.text_field :first_name, hide_label: true,
-                  autocomplete: 'off',
-                  placeholder: 'First name',
-                  help: 'Russian given name'
+              autocomplete: 'off',
+              required: true,
+              placeholder: '* First name',
+              help: 'Given name'
 
           = pf.text_field :middle_name, hide_label: true,
-                  autocomplete: 'off',
-                  placeholder: 'Middle name',
-                  help: "Russian father's name"
+              autocomplete: 'off',
+              placeholder: 'Middle name',
+              help: "Father's name"
+
+  .col-md-4.col-xs-12
+    .ribbon-wrapper.card
+      .ribbon.ribbon-default
+        | Company profile
+      .ribbon-content
+        small
+          code.text-info Job position and trial/hire date
+
+        = f.fields_for :profile do |pf|
+          = pf.text_field :position, hide_label: true,
+              wrapper: { class: 'm-t-25' },
+              autocomplete: 'off',
+              required: true,
+              placeholder: '* Job position',
+              help: 'Back-end developer, QA Engineer, etc.'
+
+          = pf.text_field :trial_at, hide_label: true,
+              autocomplete: 'off',
+              class: 'user-datepicker',
+              placeholder: '* Trial start date',
+              help: 'Trial start. Mandatory if hire date is blank.'
+
+          = pf.form_group :remote_worker, label: { text: 'Works remotely?', class: 'm-r-10' }, class: 'm-t-30', help: 'Could we have a cup of coffee at the office?' do
+            = pf.radio_button :remote_worker, 1, label: 'Yes', inline: true, checked: true
+            = pf.radio_button :remote_worker, 0, label: 'No', inline: true
+
+  .col-md-4.col-xs-12
+    .ribbon-wrapper.card
+      .ribbon.ribbon-default
+        | Contact details
+      .ribbon-content
+        small
+          code.text-info Email, Skype and cell phone
+
+        = f.fields_for :profile do |pf|
+          = pf.email_field :gmail, hide_label: true,
+              wrapper: { class: 'm-t-25' },
+              autocomplete: 'off',
+              required: true,
+              placeholder: '* Corporate Google account',
+              help: 'Something like name.amgrade@gmail.com'
+
+          = pf.text_field :skype, hide_label: true,
+              autocomplete: 'off',
+              required: true,
+              placeholder: '* Corporate Skype account',
+              help: 'Something like live:name.amgrade'
+
+          = pf.phone_field :phone1, hide_label: true,
+              autocomplete: 'off',
+              required: true,
+              placeholder: '* Phone number',
+              help: 'Primary phone number'
+
+  .col-md-4.col-xs-12
+    .ribbon-wrapper.card
+      .ribbon.ribbon-default
+        | Briefly about
+      .ribbon-content
+        small
+          code.text-info Gender, birthday, moto, etc.
+
+        = f.fields_for :profile do |pf|
+          = pf.form_group :gender, label: { text: 'Gender', class: 'm-r-10' }, class: 'm-t-30', help: 'Serious or windy?' do
+            = pf.radio_button :gender, :male, label: 'Male', inline: true, checked: true
+            = pf.radio_button :gender, :female, label: 'Female', inline: true
+
+          = pf.text_field :birthday, hide_label: true,
+              autocomplete: 'off',
+              class: 'user-birth-datepicker',
+              placeholder: '* Birthday',
+              help: 'Well ... date of birth?'
+
+          = pf.text_field :moto, hide_label: true,
+              autocomplete: 'off',
+              placeholder: 'Life moto',
+              help: 'Describe yourself in few words?'
 
   .col-md-12.col-xs-12
     = f.button :submit, class: 'btn waves-effect waves-light btn-block btn-info' do

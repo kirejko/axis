@@ -1,5 +1,4 @@
 @import 'bootstrap';
-//@import 'rails_bootstrap_forms';
 @import 'theme/css/prism';
 
 @import 'theme/icons/font-awesome/scss/fontawesome';
@@ -21,6 +20,8 @@
 @import 'theme/css/animate.css';
 
 @import 'theme/plugins/dropify/css/dropify';
+@import 'theme/plugins/datetimepicker/css/bootstrap-material-datetimepicker';
+@import 'theme/plugins/toast-master/toast';
 
 //@import 'theme/colors/purple';
 @import 'theme/colors/blue';

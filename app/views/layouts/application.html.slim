@@ -3,22 +3,22 @@ html
   head
     title
       | Axis
-    = csrf_meta_tags
-    = stylesheet_link_tag 'application', media: 'all', integrity: true
+    == csrf_meta_tags
+    == stylesheet_link_tag 'application', media: 'all', integrity: true
 
   body.fix-header.card-no-border.logo-center
     #main-wrapper
-      = render partial: 'layouts/loader'
-      = render partial: 'layouts/header'
-      = render partial: 'layouts/sidebar'
+      == render partial: 'layouts/loader'
+      == render partial: 'layouts/header'
+      == render partial: 'layouts/sidebar'
       .page-wrapper
         .container-fluid
-          = render partial: 'shared/flash' unless flash.empty?
-          = yield
+          == render partial: 'shared/flash' unless flash.empty?
+          == yield
 
         .footer
           |  © #{Date.current.year} Axis by
-          =< link_to 'AMgrade.com', 'https://amgrade.com'
+          ==< link_to 'AMgrade.com', 'https://amgrade.com'
 
-    = javascript_include_tag :application, media: 'all', integrity: true
-    = javascript_pack_tag 'application', media: 'all', integrity: true
+    == javascript_include_tag :application, media: 'all', integrity: true
+    == javascript_pack_tag 'application', media: 'all', integrity: true

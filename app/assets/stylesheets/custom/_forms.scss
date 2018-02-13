@@ -12,3 +12,7 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 1000px #fff inset;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+.form-check {
+  padding-left: 0;
+}

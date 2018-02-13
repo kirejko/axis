@@ -45,6 +45,9 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'carrierwave', '~> 1.2'
 gem 'mini_magick', '~> 4.8'
 
+# Other
+gem 'default_value_for', '~> 3.0', '>= 3.0.2'
+
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 

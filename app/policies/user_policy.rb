@@ -4,13 +4,27 @@
 class UserPolicy < ApplicationPolicy
   attr_reader :user, :record
 
-  def initialize(authorization_context, record)
-    @user = authorization_context.user
+  def initialize(user, record)
+    @user = user
     @record = record
   end
 
   # Can create users?
   def create?
-    user.admin? || user.recruiter? || user.director?
+    manages_users?
+  end
+
+  def update?
+    manages_users? && user.id != record.id
+  end
+
+  def destroy?
+    manages_users? && user.id != record.id
+  end
+
+  private
+
+  def manages_users?
+    %i[admin recruiter director].include?(user.role)
   end
 end

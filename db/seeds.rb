@@ -1,32 +1,43 @@
 # frozen_string_literal: true
 
+return unless Rails.env.development?
+
+User.destroy_all
+
 # Admin user account
-User.create(email: 'tech@amgrade.com', password: 'password', role: User::ROLES[:admin]) do |user|
-  user.create_profile(
-    first_name: 'Tech',
-    last_name: 'Admin',
-    gender: Profile::GENDERS[:male],
-    position: 'Axis Admin'
-  )
-end
+tech_admin = User.create(email: 'tech@amgrade.com', password: 'password', role: User::ROLES[:admin])
+tech_admin.create_profile(
+  first_name: 'Admin',
+  last_name:  'Tech',
+  gender:     Profile::GENDERS[:male],
+  position:   'Axis Admin',
+  gmail:      'docs.amgrade@gmail.com',
+  skype:      'tech.amgrade',
+  phone1:     '+38(068)2862186',
+  birthday:   '1980-09-03',
+  trial_at:   '2018-01-01'
+)
+puts '=> Tech Admin user created'
 
-if Rails.env.development?
-  # 25 random users
-  25.times do
-    # generate email and name
-    fname = Hash[%i[first_name middle_name last_name].zip(Faker::Name.name_with_middle.split(/\s+/, 3))]
-    email = Faker::Internet.unique.email(fname.values.join('.'))
-    position = ['Backend Developer', 'Frontend Developer', 'iOS Developer', 'Android Developer'].sample
+# 25 ramdom fake users
+position = ['Backend Developer', 'Frontend Developer', 'iOS Developer', 'Android Developer', 'Recruiter']
+25.times do
+  fl_name  = [Faker::Name.first_name, Faker::Name.first_name]
+  username = fl_name.join('.')
+  profile  = {
+    first_name: fl_name[0],
+    last_name:  fl_name[1],
+    gender:     Profile::GENDERS.values[rand(Profile::GENDERS.values.size)],
+    position:   position.sample,
+    gmail:      "#{username}@gmail.com",
+    skype:      "live:#{username}",
+    phone1:     Faker::PhoneNumber.phone_number,
+    birthday:   Faker::Date.birthday,
+    trial_at:   Date.today
+  }
 
-    # create user
-    User.create(email: email, password: 'password', role: User::ROLES[:user]) do |user|
-      # create associated profile
-      user.create_profile(fname.merge(
-                            gender: Profile::GENDERS.values[rand(Profile::GENDERS.values.size)],
-                            position: position,
-                            skype: fname.values.join('.'),
-                            gmail: "#{fname.values.join('.')}@gmail.com"
-      ))
-    end
-  end
+  user = User.create(email: Faker::Internet.safe_email(username), password: 'password', role: User::ROLES[:user])
+  user.create_profile(profile)
+
+  puts "=> User '#{user.email}' created"
 end

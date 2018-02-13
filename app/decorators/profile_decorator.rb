@@ -4,8 +4,7 @@
 class ProfileDecorator < Draper::Decorator
   delegate_all
 
-  def position
-    object.position.gsub(/\b\w/, &:upcase)
-  end
-
+  # def position
+  #   object.position&.titleize
+  # end
 end

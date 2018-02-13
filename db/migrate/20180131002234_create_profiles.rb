@@ -8,14 +8,18 @@ class CreateProfiles < ActiveRecord::Migration[5.1]
       t.string  :first_name,    null: false, default: ''
       t.string  :middle_name,   null: false, default: ''
       t.string  :last_name,     null: false, default: ''
+
       t.integer :gender
       t.date    :birthday
-
-      t.string  :position
+      t.string  :moto
+      t.text    :bio
 
       t.string  :gmail
       t.string  :skype
+      t.string  :phone1
+      t.string  :phone2
 
+      t.string  :position
       t.boolean :remote_worker, default: false
       t.boolean :remote_hourly, default: false
 

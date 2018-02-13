@@ -3,12 +3,33 @@ html
   head
     title
       | Axis
-    = csrf_meta_tags
-    = stylesheet_link_tag 'application', media: 'all', integrity: true
-    = javascript_include_tag :application, media: 'all', integrity: true
-    = javascript_pack_tag 'application', media: 'all', integrity: true
+    == csrf_meta_tags
+    == stylesheet_link_tag 'application', media: 'all', integrity: true
+    == javascript_include_tag :application, media: 'all', integrity: true
+    == javascript_pack_tag 'application', media: 'all', integrity: true
+
+    javascript:
+      var keyword = "mountains";
+      $(document).ready(function () {
+        // Get random image from Flickr
+        $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?", {
+          tags: keyword,
+          tagmode: "any",
+          format: "json"
+        }, function (data) {
+            var rnd = Math.floor(Math.random() * data.items.length);
+            var src = data.items[rnd]['media']['m'].replace("_m", "_b");
+
+            $('section#wrapper').css('background-image', "url('" + src + "')");
+
+        });
+      });
+
   body
     section#wrapper.login-register.login-sidebar
       .login-box.card
         .card-body
-          = yield
+          == render partial: 'shared/flash' unless flash.empty?
+          == yield
+          .footer
+            | Images by &copy; Flickr

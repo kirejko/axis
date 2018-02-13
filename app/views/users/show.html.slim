@@ -1,2 +1,18 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+= render partial: 'users/links'
+
+.row
+  .col-lg-4.col-xlg-3.col-md-5
+    .card
+      img.card-img src="https://picsum.photos/395/500" alt="#{@user}"
+      .card-img-overlay.card-inverse.social-profile.d-flex.justify-content-center.align-items-center
+        .align-self-center
+          = image_tag(@user.avatar.url(:sm), class: 'img-circle m-b-15', alt: @user, width: 100)
+          h4.card-title = @user
+          h6.card-subtitle = @user.profile.position
+          p.text-white
+            = @user.profile.moto
+
+  .col-lg-8.col-xlg-9.col-md-7
+    .card
+      .card-body
+        | Lorep ipsum dolor

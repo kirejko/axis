@@ -1,0 +1,22 @@
+.col-md-4.col-lg-4.col-xlg-3
+  .card
+    .card-body
+      .row
+        .col-md-4.col-lg-3.text-center
+          a href=user_path(user)
+            = image_tag(user.avatar.url(:md), class: 'img-circle img-responsive')
+
+        .col-md-8.col-lg-9
+          h3.box-title.m-b-0
+            = link_to user.profile.full_name, user_path(user)
+          small.position
+            = user.profile.position
+          br
+          a href="skype:#{user.profile.skype}?call"
+            small
+              i.fab.fa-skype.m-r-5
+              = user.profile.skype
+    - if policy(user).update?
+      .card-footer.small.text-right
+        a.card-link href="#" Edit profile
+        a.card-link.text-danger href="#" Delete profile

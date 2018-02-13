@@ -10,35 +10,43 @@ class User < ApplicationRecord
   ROLES = { admin: 0, user: 1, lead: 2, manager: 3, recruiter: 4, director: 5 }.freeze
   enum role: ROLES
 
-  has_one :profile, inverse_of: :user, dependent: :destroy
+  # Relations
+  has_one :profile, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :profile
 
-  # Downcase email before saving model
+  # Default values
+  default_value_for :role, ROLES[:user]
+
+  # Hooks
   before_save :downcase_email
 
-  # E-mail validation
-  validates :email, presence: true, uniqueness: { case_sensitive: false }, email: true, if: -> { email.present? }
-  validates :password, confirmation: true, length: { minimum: 8 }
+  # scopes
+  scope :ordered, -> { joins(:profile).merge(Profile.ordered) }
 
-  # User Avatar Validation
+  # Validations
+  validates :email,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            email: true,
+            if: -> { email.present? },
+            on: %i[create update]
+
+  validates :password,
+            confirmation: true,
+            length: { minimum: 8 },
+            if: -> { password.present? },
+            on: %i[create]
+
   validates_integrity_of  :avatar
   validates_processing_of :avatar
 
   # Pagination
   paginates_per 18
 
-  after_initialize do |user|
-    user.role ||= ROLES[:user]
-  end
-
-  def to_s
-    "#{profile.first_name} #{profile.last_name}"
-  end
-
   private
 
   def downcase_email
-    self.email = email.delete(' ').downcase
+    self.email = email.downcase
   end
 
   def avatar_size_validation

@@ -31,9 +31,13 @@ ActiveRecord::Schema.define(version: 20180206171421) do
     t.string "last_name", default: "", null: false
     t.integer "gender"
     t.date "birthday"
-    t.string "position"
+    t.string "moto"
+    t.text "bio"
     t.string "gmail"
     t.string "skype"
+    t.string "phone1"
+    t.string "phone2"
+    t.string "position"
     t.boolean "remote_worker", default: false
     t.boolean "remote_hourly", default: false
     t.date "trial_at"

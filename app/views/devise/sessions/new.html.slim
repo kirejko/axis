@@ -1,31 +1,33 @@
-= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal form-material' }) do |f|
+= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal form-material' }) do |f|
 
   a.text-center.db href="javascript:void(0)"
     b
       i.zmdi.zmdi-view-dashboard.zmdi-hc-2x.zmdi-hc-fw.light-logo.py-3
 
-  .form-group.m-t-40
-    .col-xs-12
-      = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', placeholder: 'E-mail'
+  = f.email_field :email, hide_label: true,
+        wrapper: { class: 'm-t-40' },
+        autofocus: true,
+        autocomplete: 'email',
+        placeholder: 'E-mail'
 
-  .form-group
-    .col-xs-12
-      = f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: 'Password'
+  = f.password_field :password, hide_label: true,
+        autocomplete: 'off',
+        placeholder: 'Password'
 
   - if devise_mapping.rememberable?
-    .form-group
-      .col-md-12
-        .checkbox.checkbox-primary.float-sm-left.p-t-0
-          = f.check_box :remember_me
-          = f.label :remember_me
+    = f.form_group do
+      = f.check_box :remember_me
 
-        - if devise_mapping.recoverable? && controller_name != :passwords
-          a#to-recover.text-dark.float-sm-right href=new_password_path(resource_name)
-            i.zmdi.zmdi-lock-outline.m-r-5
-            | Forgot pwd?
+  = f.button :submit, class: 'btn btn-info btn-block waves-effect waves-light' do
+    | Log me in
 
-  .form-group.text-center.m-t-20
-    .col-xs-12
-      = f.button :submit, class: 'btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light' do
-        | Log me in
+  - if devise_mapping.recoverable? && controller_name != :passwords
+    = f.form_group class: 'text-center m-t-30' do
+      a#to-recover.text-dark.text-center href=new_password_path(resource_name)
+        i.zmdi.zmdi-lock-outline.m-r-5
+        | Forgot your password?
+
+  / .form-group.text-center.m-t-20
+  /   .col-xs-12
+
 

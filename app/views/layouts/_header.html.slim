@@ -17,13 +17,13 @@ header.topbar
       ul.navbar-nav.my-lg-0
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle.text-muted.waves-effect.waves-dark data-toggle="dropdown" href=""
-            = image_tag(current_user.avatar.url, class: 'profile-pic', alt: current_user)
+            = image_tag(current_user.avatar.url(:xs), class: 'profile-pic', alt: current_user)
           .dropdown-menu.dropdown-menu-right.scale-up
             ul.dropdown-user
               li
                 .dw-user-box
                   .u-img
-                    = image_tag(current_user.avatar.url, alt: current_user)
+                    = image_tag(current_user.avatar.url(:sm), alt: current_user)
                   .u-text
                     h4
                       = current_user
