@@ -4,6 +4,20 @@
     b
       i.zmdi.zmdi-view-dashboard.zmdi-hc-2x.zmdi-hc-fw.light-logo.py-3
 
+  - if ! flash.empty?
+    .ribbon-vwrapper.card
+      .ribbon.ribbon-danger.ribbon-vertical-l
+        i.fas.fa-exclamation-triangle
+      .ribbon-content
+        ul.list-icons.m-l-5
+          - flash.each do |name, msg|
+            li
+              i.ti-angle-right
+              = msg
+
+
+
+
   = f.email_field :email, hide_label: true,
         wrapper: { class: 'm-t-40' },
         autofocus: true,
@@ -21,7 +35,7 @@
   = f.button :submit, class: 'btn btn-info btn-block waves-effect waves-light' do
     | Log me in
 
-  - if devise_mapping.recoverable? && controller_name != :passwords
+  - if devise_mapping.recoverable? && controller_name != 'passwords'
     = f.form_group class: 'text-center m-t-30' do
       a#to-recover.text-dark.text-center href=new_password_path(resource_name)
         i.zmdi.zmdi-lock-outline.m-r-5

@@ -18,6 +18,9 @@ tech_admin.create_profile(
   trial_at:   '2018-01-01'
 )
 puts '=> Tech Admin user created'
+puts '-' * 60
+puts '| Use "tech@amgrade.com" with "password" to log in with it |'
+puts '-' * 60
 
 # 25 ramdom fake users
 position = ['Backend Developer', 'Frontend Developer', 'iOS Developer', 'Android Developer', 'Recruiter']
@@ -39,5 +42,5 @@ position = ['Backend Developer', 'Frontend Developer', 'iOS Developer', 'Android
   user = User.create(email: Faker::Internet.safe_email(username), password: 'password', role: User::ROLES[:user])
   user.create_profile(profile)
 
-  puts "=> User '#{user.email}' created"
+  puts "-> User account '#{user.email}' created"
 end

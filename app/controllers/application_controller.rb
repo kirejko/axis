@@ -2,7 +2,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   include Pundit
-  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  def pundit_user
+    AuthContext.new(current_user)
+  end
+
+  # @return [User]
+  def current_user
+    super
+  end
 
   private
 

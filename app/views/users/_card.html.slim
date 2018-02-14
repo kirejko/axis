@@ -16,7 +16,9 @@
             small
               i.fab.fa-skype.m-r-5
               = user.profile.skype
-    - if policy(user).update?
-      .card-footer.small.text-right
-        a.card-link href="#" Edit profile
-        a.card-link.text-danger href="#" Delete profile
+
+    / - if policy(user).update?
+    /   .card-footer.small.text-right
+    /     a.card-link href="#" Edit profile
+    /     - if policy(user).destroy?
+    /       a.card-link.text-danger href="#" Delete profile

@@ -9,7 +9,7 @@ html
     == javascript_pack_tag 'application', media: 'all', integrity: true
 
     javascript:
-      var keyword = "mountains";
+      var keyword = "coffee, mountains";
       $(document).ready(function () {
         // Get random image from Flickr
         $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?", {
@@ -29,7 +29,6 @@ html
     section#wrapper.login-register.login-sidebar
       .login-box.card
         .card-body
-          == render partial: 'shared/flash' unless flash.empty?
           == yield
           .footer
             | Images by &copy; Flickr

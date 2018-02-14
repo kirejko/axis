@@ -13,11 +13,13 @@ class CreateProfiles < ActiveRecord::Migration[5.1]
       t.date    :birthday
       t.string  :moto
       t.text    :bio
+      t.text    :notes
 
       t.string  :gmail
       t.string  :skype
       t.string  :phone1
       t.string  :phone2
+      t.string  :address
 
       t.string  :position
       t.boolean :remote_worker, default: false
