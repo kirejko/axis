@@ -19,17 +19,6 @@ class Profile < ApplicationRecord
   # Scopes
   scope :ordered, -> { order(last_name: :asc) }
 
-  # Validations
-  validates :first_name,  presence: true, length: { in: 2..32 }, if: -> { first_name.present? }
-  validates :last_name,   presence: true, length: { in: 2..32 }, if: -> { last_name.present? }
-  validates :position,    presence: true
-  validates :gmail,       presence: true, email: true, if: -> { gmail.present? }
-  validates :skype,       presence: true
-  validates :phone1,      presence: true
-  validates :birthday,    presence: true
-  validates :trial_at,    presence: true
-  # validates :remote_worker, presence: true
-
   # Virtual attributes
   def full_name=(name)
     names = name.split(' ', 2)

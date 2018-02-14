@@ -5,15 +5,20 @@
         | Create new profile
       - elsif %w(edit update).include?(action_name)
         | Edit existing profile
+      - elsif %w(show).include?(action_name) && user.present?
+        /| View profile for&nbsp;
+        = "#{user.profile.first_name}'s profile"
       - else
         | People directory
     ol.breadcrumb
       li.breadcrumb-item
         a href=root_path  Home
       li.breadcrumb-item
-        = link_to_if(%w(new create edit update).include?(action_name), 'People', users_path)
+        = link_to_if(%w(new create edit update show).include?(action_name), 'People', users_path)
       - if %w(new create).include?(action_name)
         li.breadcrumb-item New
+      - elsif %w(show).include?(action_name)
+        li.breadcrumb-item View
       - elsif %w(edit update).include?(action_name)
         li.breadcrumb-item Edit
 

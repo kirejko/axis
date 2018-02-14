@@ -12,33 +12,27 @@ class User < ApplicationRecord
 
   # Relations
   has_one :profile, dependent: :destroy, autosave: true
-  accepts_nested_attributes_for :profile
+  # accepts_nested_attributes_for :profile
 
   # Default values
   default_value_for :role, ROLES[:user]
 
   # Hooks
   before_save :downcase_email
+  # before_save :avatar_size_validation, if: -> { avatar.present? }
 
   # scopes
   scope :ordered, -> { joins(:profile).merge(Profile.ordered) }
 
-  # Validations
-  validates :email,
-            presence: true,
-            uniqueness: { case_sensitive: false },
-            email: true,
-            if: -> { email.present? },
-            on: %i[create update]
+  # Validate email for uniqueness
+  validates :email, uniqueness: { case_sensitive: false }, email: true, on: :create
 
-  validates :password,
-            confirmation: true,
-            length: { minimum: 8 },
-            if: -> { password.present? },
-            on: %i[create]
-
-  validates_integrity_of  :avatar
-  validates_processing_of :avatar
+  # Validate avatar when creating user
+  validates_integrity_of  :avatar, on: :create
+  validates_processing_of :avatar, on: :create
+  # Validate avatar when updating user
+  validates_integrity_of  :avatar, on: :update, if: -> { avatar.present? }
+  validates_processing_of :avatar, on: :update, if: -> { avatar.present? }
 
   # Pagination
   paginates_per 18

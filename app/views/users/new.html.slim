@@ -1,26 +1,30 @@
 = render partial: 'users/links'
 
-= bootstrap_form_for @user, html: { class: 'form-material m-t-10 row', multipart: true } do |f|
+= bootstrap_form_for @form, url: users_path, html: { class: 'form-material m-t-10 row', multipart: true } do |f|
 
-  - if @user.errors.any?
+  - if @form.errors.any? && Rails.env.development?
     .col-md-12
       .ribbon-vwrapper.card
         .ribbon.ribbon-danger.ribbon-vertical-l
           i.fas.fa-exclamation-triangle
         .ribbon-content
-          == f.error_summary
+          ul.list-icons.m-l-5
+            - @form.errors.each do |field, error|
+              li
+                i.ti-angle-right
+                = "#{field.to_s.titleize} #{error}"
 
   .col-md-4.col-xs-12
     .ribbon-wrapper.card
       .ribbon.ribbon-default
-        | Photo & gender
+        | User photo
       .ribbon-content
         small
           code.text-info Allows JPG(JPEG) and PNG. Max allowed size is 2Mb.
 
         = f.file_field :avatar, hide_label: true,
             class: 'dropify',
-            data: { height: 225 },
+            data: { height: 224 },
             wrapper: { class: 'm-t-20' }
 
   .col-md-4.col-xs-12
@@ -60,24 +64,23 @@
         small
           code.text-info First, middle and last names
 
-        = f.fields_for :profile do |pf|
-          = pf.text_field :last_name, hide_label: true,
-              wrapper: { class: 'm-t-25' },
-              autocomplete: 'off',
-              required: true,
-              placeholder: '* Last name',
-              help: 'Family name'
+        = f.text_field :last_name, hide_label: true,
+            wrapper: { class: 'm-t-25' },
+            autocomplete: 'off',
+            required: true,
+            placeholder: '* Last name',
+            help: 'Family name'
 
-          = pf.text_field :first_name, hide_label: true,
-              autocomplete: 'off',
-              required: true,
-              placeholder: '* First name',
-              help: 'Given name'
+        = f.text_field :first_name, hide_label: true,
+            autocomplete: 'off',
+            required: true,
+            placeholder: '* First name',
+            help: 'Given name'
 
-          = pf.text_field :middle_name, hide_label: true,
-              autocomplete: 'off',
-              placeholder: 'Middle name',
-              help: "Father's name"
+        = f.text_field :middle_name, hide_label: true,
+            autocomplete: 'off',
+            placeholder: 'Middle name',
+            help: "Father's name"
 
   .col-md-4.col-xs-12
     .ribbon-wrapper.card
@@ -87,23 +90,26 @@
         small
           code.text-info Job position and trial/hire date
 
-        = f.fields_for :profile do |pf|
-          = pf.text_field :position, hide_label: true,
-              wrapper: { class: 'm-t-25' },
-              autocomplete: 'off',
-              required: true,
-              placeholder: '* Job position',
-              help: 'Back-end developer, QA Engineer, etc.'
+        = f.text_field :position, hide_label: true,
+            wrapper: { class: 'm-t-25' },
+            autocomplete: 'off',
+            required: true,
+            placeholder: '* Job position',
+            help: 'Back-end developer, QA Engineer, etc.'
 
-          = pf.text_field :trial_at, hide_label: true,
-              autocomplete: 'off',
-              class: 'user-datepicker',
-              placeholder: '* Trial start date',
-              help: 'Trial start. Mandatory if hire date is blank.'
+        = f.text_field :trial_at, hide_label: true,
+            autocomplete: 'off',
+            class: 'user-datepicker',
+            placeholder: '* Trial start date',
+            help: 'When the trial period has started'
 
-          = pf.form_group :remote_worker, label: { text: 'Works remotely?', class: 'm-r-10' }, class: 'm-t-30', help: 'Could we have a cup of coffee at the office?' do
-            = pf.radio_button :remote_worker, 1, label: 'Yes', inline: true, checked: true
-            = pf.radio_button :remote_worker, 0, label: 'No', inline: true
+        = f.form_group :remote_worker, label: { text: 'Works remotely?', class: 'm-r-10' }, class: 'm-t-30', help: 'Could we have a cup of coffee at the office?' do
+          = f.radio_button :remote_worker, 1, label: 'Yes', inline: true
+          = f.radio_button :remote_worker, 0, label: 'No', inline: true, checked: true
+
+        = f.form_group :remote_hourly, label: { text: 'Works part-time?', class: 'm-r-10' }, class: 'm-t-30', help: 'Do we pay salary or per hour?' do
+          = f.radio_button :remote_hourly, 1, label: 'Yes', inline: true
+          = f.radio_button :remote_hourly, 0, label: 'No', inline: true, checked: true
 
   .col-md-4.col-xs-12
     .ribbon-wrapper.card
@@ -113,25 +119,29 @@
         small
           code.text-info Email, Skype and cell phone
 
-        = f.fields_for :profile do |pf|
-          = pf.email_field :gmail, hide_label: true,
-              wrapper: { class: 'm-t-25' },
-              autocomplete: 'off',
-              required: true,
-              placeholder: '* Corporate Google account',
-              help: 'Something like name.amgrade@gmail.com'
+        = f.email_field :gmail, hide_label: true,
+            wrapper: { class: 'm-t-25' },
+            autocomplete: 'off',
+            required: true,
+            placeholder: '* Corporate Google account',
+            help: 'Something like name.amgrade@gmail.com'
 
-          = pf.text_field :skype, hide_label: true,
-              autocomplete: 'off',
-              required: true,
-              placeholder: '* Corporate Skype account',
-              help: 'Something like live:name.amgrade'
+        = f.text_field :skype, hide_label: true,
+            autocomplete: 'off',
+            required: true,
+            placeholder: '* Corporate Skype account',
+            help: 'Something like live:name.amgrade'
 
-          = pf.phone_field :phone1, hide_label: true,
-              autocomplete: 'off',
-              required: true,
-              placeholder: '* Phone number',
-              help: 'Primary phone number'
+        = f.phone_field :phone1, hide_label: true,
+            autocomplete: 'off',
+            required: true,
+            placeholder: '* Phone number #1',
+            help: 'Primary phone number'
+
+        = f.phone_field :phone2, hide_label: true,
+            autocomplete: 'off',
+            placeholder: 'Phone number #2',
+            help: 'Secondary phone number'
 
   .col-md-4.col-xs-12
     .ribbon-wrapper.card
@@ -141,21 +151,26 @@
         small
           code.text-info Gender, birthday, moto, etc.
 
-        = f.fields_for :profile do |pf|
-          = pf.form_group :gender, label: { text: 'Gender', class: 'm-r-10' }, class: 'm-t-30', help: 'Serious or windy?' do
-            = pf.radio_button :gender, :male, label: 'Male', inline: true, checked: true
-            = pf.radio_button :gender, :female, label: 'Female', inline: true
+        = f.form_group :gender, label: { text: 'Gender', class: 'm-r-10' }, class: 'm-t-30', help: 'Serious or windy?' do
+          = f.radio_button :gender, :male, label: 'Male', inline: true, checked: true
+          = f.radio_button :gender, :female, label: 'Female', inline: true
 
-          = pf.text_field :birthday, hide_label: true,
-              autocomplete: 'off',
-              class: 'user-birth-datepicker',
-              placeholder: '* Birthday',
-              help: 'Well ... date of birth?'
+        = f.text_field :birthday, hide_label: true,
+            autocomplete: 'off',
+            class: 'user-birth-datepicker',
+            placeholder: '* Birthday',
+            help: 'Well ... date of birth?'
 
-          = pf.text_field :moto, hide_label: true,
-              autocomplete: 'off',
-              placeholder: 'Life moto',
-              help: 'Describe yourself in few words?'
+        = f.text_area :notes, label: 'Notes for HRs',
+            wrapper: { class: 'm-b-15' },
+            autocomplete: 'off',
+            rows: 4,
+            help: 'Some brief info visible to HRs and directors only'
+
+        / = f.text_field :moto, hide_label: true,
+        /     autocomplete: 'off',
+        /     placeholder: 'Life moto',
+        /     help: 'Describe yourself in few words?'
 
   .col-md-12.col-xs-12
     = f.button :submit, class: 'btn waves-effect waves-light btn-block btn-info' do
