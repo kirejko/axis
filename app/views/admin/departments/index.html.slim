@@ -1,2 +1,18 @@
-h1 Departments#index
-p Find me in app/views/admin/departments/index.html.slim
+= render partial: 'admin/departments/links'
+
+.row
+  - @departments.each do |department|
+    .col-md-4
+      .card.ribbon-wrapper style="min-height: 180px"
+        .card-body
+          .ribbon.ribbon-default.col-md-8
+            = department.name
+
+          small style="position: absolute; top: 20px; right: 25px"
+            a.text-muted href=edit_admin_department_path(department)
+              i.fas.fa-cogs.m-l-5
+
+          .ribbon-content
+            = department.description
+
+

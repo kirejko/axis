@@ -11,20 +11,23 @@ Rails.application.routes.draw do
 
   # admin routes
   namespace :admin do
-    authenticate :user, ->(user) { user.admin? } do
-      # Sidekiq
+    authenticated :user, ->(user) { user.admin? } do
       require 'sidekiq/web'
       mount Sidekiq::Web => '/sidekiq'
     end
 
-    # Manage departments
-    resources :departments, only: %i[index new create edit update destroy]
+    resources :departments, except: :show
+    resources :users
 
-    # Manage users
-    # resources :users
+    # Admin root path
+    root 'dashboard#index'
   end
 
-  root to: 'dashboard#index'
+  # user routes
+
+  resources :people, only: %i[index show]
+
+  root 'dashboard#index'
 
   get '*unmatched_route', to: 'application#raise_not_found'
 end

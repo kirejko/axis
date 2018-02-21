@@ -1,0 +1,25 @@
+.row.page-titles
+  .col-md-5.col-8.align-self-center
+    h3.text-themecolor.m-b-0.m-t-0
+      - if %w(new create).include?(action_name)
+        | New department
+      - elsif %w(edit update).include?(action_name)
+        | Edit department
+      - else
+        | Company departments
+    ol.breadcrumb
+      li.breadcrumb-item
+        a href=admin_root_path
+          | Home
+      li.breadcrumb-item
+        = link_to_if(%w(new create edit update).include?(action_name), 'Department', admin_departments_path)
+      - if %w(new create).include?(action_name)
+        li.breadcrumb-item New
+      - elsif %w(edit update).include?(action_name)
+        li.breadcrumb-item Edit
+
+  - if action_name === 'index'
+    .col-md-7.col-4.align-self-center
+      .d-flex.m-t-10.justify-content-end
+        a.right-side-toggle.waves-effect.waves-light.btn-danger.btn.btn-circle.btn-sm.pull-right.m-l-10 href=new_admin_department_path
+          i.fas.fa-plus-circle.text-white

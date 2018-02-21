@@ -15,10 +15,10 @@ header.topbar
               i.ti-close
       ul.navbar-nav.my-lg-0
 
-        - if current_user.admin?
-          li.nav-item
-            a.nav-link.text-muted.waves-effect.waves-dark.p-t-10
-              i.zmdi.zmdi-account-box-o
+        / - if current_user.admin?
+        /   li.nav-item
+        /     a.nav-link.text-muted.waves-effect.waves-dark.p-t-10 href=admin_root_path
+        /       i.zmdi.zmdi-account-box-o
 
 
         // Messages

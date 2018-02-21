@@ -3403,6 +3403,40 @@ ribbons page
     border-bottom-color: $dark;
 }
 
+.ribbon-muted {
+  background: $muted;
+}
+
+.ribbon-bookmark.ribbon-muted:before {
+  border-color: $muted;
+  border-right-color: transparent;
+}
+
+.ribbon-bookmark.ribbon-right.ribbon-muted:before {
+  border-right-color: $muted;
+  border-left-color: transparent;
+}
+
+.ribbon-bookmark.ribbon-vertical-l.ribbon-muted:before,
+.ribbon-bookmark.ribbon-vertical-r.ribbon-muted:before {
+  border-right-color: $muted;
+  border-bottom-color: transparent;
+}
+
+.ribbon-muted.ribbon-corner:before {
+  border-top-color: $muted;
+  border-left-color: $muted;
+}
+
+.ribbon-muted.ribbon-corner.ribbon-right:before {
+  border-right-color: $muted;
+  border-left-color: transparent;
+}
+
+.ribbon-default.ribbon-corner.ribbon-bottom:before {
+  border-top-color: transparent;
+  border-bottom-color: $muted;
+}
 
 /*******************
 session ideal timeout page

@@ -4,18 +4,20 @@
 Department.destroy_all
 
 # Seed default departments. However departments can be managed.
-[
-  'Backend Development',
-  'Frontend Development',
-  'Mobile Development',
-  'Quality Assurance',
-  'Project Management',
-  'Business Development',
-  'Servers Administration',
-  'Recruitment',
-  'Financial'
-].each do |name|
-  Department.create(name: name)
+puts '=> Creating default departments'
+{
+  backend_development:    'Consists of PHP, Ruby and Python developers. They do all the invisible magick.',
+  frontend_development:   'JavaScript Ninjas. They tend to do all the beauty and interactive things.',
+  mobile_development:     'Wanna get a cool app on your gadget? Easy bro!',
+  quality_assurance:      'These guys will not let you fail. They will hunt every single line of your code.',
+  project_management:     'Those who keep the order of things ... and cakes to developers :)',
+  business_development:   'They would sell a breath to you, even when you can breath yourself',
+  servers_administration: 'Well, when they play Warcraft all the day long, you can be sure everything is fine',
+  rescruitment:           'HRs... they are merciless headhunters. But they bring smiles to all of us every day',
+  financial:              'Where is my paychek?! Better do not anger them, or your paycheck will go to /dev/null :)'
+}.each_entry do |name, description|
+  Department.create(name: name.to_s.titleize, description: description)
+  puts "-> Department '#{name}' created with descritpion '#{description}'"
 end
 
 # Clean-up users table
@@ -38,12 +40,10 @@ puts '-' * 60
 puts '| Use "tech@amgrade.com" with "password" to log in with it |'
 puts '-' * 60
 
-
 # Below are seeders for local development only
 return unless Rails.env.development?
 
 ActiveRecord::Base.transaction do
-
   # 25 ramdom fake users
   position = ['Laravel/Rails Developer', 'React Developer', 'HTML Coder', 'iOS Developer', 'Android Developer', 'Recruiter']
   25.times do
@@ -75,5 +75,4 @@ ActiveRecord::Base.transaction do
 
     puts "-> User account '#{user.email}' created"
   end
-
 end

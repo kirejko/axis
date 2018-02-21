@@ -15,3 +15,22 @@ aside.left-sidebar
           a aria-expanded="false" href="#"
             i.zmdi.zmdi-cloud-outline-alt
             span.hide-menu Documents
+
+
+
+        // Please keep this menu item ad the end ad it floats to right side
+        - if current_user.admin?
+          li.float-right
+            a.has-arrow aria-expanded="false" href="#"
+              i.zmdi.zmdi-widgets
+              span.hide-menu = Admin
+            ul.collapse aria-expanded="false"
+              li
+                a href=admin_users_path
+                  | Manage users
+              li
+                a href=admin_departments_path
+                  | Manage department
+              li
+                a href=admin_sidekiq_web_path
+                  | Sidekiq Dashboard
