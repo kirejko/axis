@@ -56,7 +56,7 @@ gem 'carrierwave', '~> 1.2'
 gem 'mini_magick', '~> 4.8'
 
 # Other
-gem 'default_value_for', '~> 3.0'
+gem 'default_value_for', '~> 3.0', '>= 3.0.5'
 
 # ENV management
 gem 'figaro', '~> 1.1'
