@@ -35,8 +35,4 @@ en:
       models:
         user:
           attributes:
-            #email:
-              #blank: "Must be provided"
-              #email: "Must be correct email"
-            #password:
-              #blank: "Must be provided"
+

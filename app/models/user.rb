@@ -7,12 +7,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable,
          :trackable, :lockable, :validatable
 
-  ROLES = { admin: 0, user: 1, lead: 2, manager: 3, recruiter: 4, director: 5 }.freeze
+  ROLES = { admin: 0, user: 1, accountant: 2, lead: 3, manager: 4, recruiter: 5, director: 6 }.freeze
   enum role: ROLES
 
   # Relations
   has_one :profile, dependent: :destroy, autosave: true
-  # accepts_nested_attributes_for :profile
+  belongs_to :department, optional: true
 
   # Default values
   default_value_for :role, ROLES[:user]

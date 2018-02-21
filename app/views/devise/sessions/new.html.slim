@@ -4,7 +4,7 @@
     b
       i.zmdi.zmdi-view-dashboard.zmdi-hc-2x.zmdi-hc-fw.light-logo.py-3
 
-  - if ! flash.empty?
+  - unless flash.empty?
     .ribbon-vwrapper.card
       .ribbon.ribbon-danger.ribbon-vertical-l
         i.fas.fa-exclamation-triangle
@@ -12,10 +12,7 @@
         ul.list-icons.m-l-5
           - flash.each do |name, msg|
             li
-              i.ti-angle-right
               = msg
-
-
 
 
   = f.email_field :email, hide_label: true,
@@ -40,8 +37,5 @@
       a#to-recover.text-dark.text-center href=new_password_path(resource_name)
         i.zmdi.zmdi-lock-outline.m-r-5
         | Forgot your password?
-
-  / .form-group.text-center.m-t-20
-  /   .col-xs-12
 
 

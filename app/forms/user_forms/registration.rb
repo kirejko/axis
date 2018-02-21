@@ -39,7 +39,7 @@ module UserForms
     private
 
     def persist!
-      User.transaction do
+      ActiveRecord::Base.transaction do
         user = User.create!(email: email, password: password, avatar: avatar)
         user.create_profile(
           first_name: first_name, last_name: last_name, middle_name: middle_name, gender: gender, birthday: birthday,
