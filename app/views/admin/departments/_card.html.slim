@@ -1,0 +1,23 @@
+.col-md-4.col-sm-6.col-xs-12
+  .card.ribbon-wrapper style="min-height: 180px"
+    .card-body
+      .ribbon.ribbon-default.col-md-9 style="padding: 0 15px 0 20px;"
+        .row
+          .col-md-9
+            = department.name
+          .col-md-3.bg-primary.text-center
+            .small
+              i.zmdi.zmdi-accounts-outline.m-r-10
+              = department.users_count
+
+
+      small style="position: absolute; top: 20px; right: 25px"
+        a.text-muted href=edit_admin_department_path(department)
+          i.far.fa-edit
+
+      small style="position: absolute; top: 20px; right: 60px"
+        delete-item[url=admin_department_path(department)]
+
+
+      .ribbon-content
+        = department.description

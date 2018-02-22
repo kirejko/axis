@@ -26,7 +26,8 @@ ActiveRecord::Schema.define(version: 20180220220428) do
 
   create_table "departments", force: :cascade do |t|
     t.string "name", default: "", null: false
-    t.text "description"
+    t.text "description", default: "", null: false
+    t.integer "users_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

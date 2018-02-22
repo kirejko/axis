@@ -7,3 +7,50 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
+window.$ = window.jQuery = require('jquery')
+
+require('jquery-toast-plugin')
+
+import Vue from 'vue/dist/vue.esm'
+import TurbolinksAdapter from 'vue-turbolinks';
+
+Vue.use(TurbolinksAdapter)
+
+import vbus from '../utils/vbus'
+import deleteItem from '../components/deleteItem.vue'
+
+import ucfirst from 'locutus/php/strings/ucfirst'
+
+document.addEventListener('turbolinks:load', () => {
+  new Vue({
+    el: '#app',
+
+    components: {
+      deleteItem
+    },
+
+    mounted() {
+      $('.preloader').fadeOut()
+
+      require('../helpers/theme')
+    },
+
+    created() {
+      vbus.$on('envelope', (envelope) => {
+        document.addEventListener('turbolinks:load', () => {
+
+          $.toast({
+            heading:   ucfirst(envelope.status),
+            text:      envelope.message,
+            position:  'top-right',
+            loaderBg:  '#ff6849',
+            icon:      envelope.status,
+            hideAfter: 5000,
+            stack:     3,
+          })
+        })
+      })
+    }
+
+  });
+})

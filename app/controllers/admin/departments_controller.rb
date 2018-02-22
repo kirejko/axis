@@ -3,23 +3,27 @@
 module Admin
   # Departments management
   class DepartmentsController < AdminController
-    before_action :set_department, only: %i[edit destroy]
+    before_action :set_department, only: %i[edit update destroy]
 
     # get '/admin/departments'
     def index
-      @departments = Department.all.page(params[:page]).decorate
+      @departments = Department.page(params[:page]).decorate
     end
 
     # get '/admin/departments/new'
     def new
-      @form = Forms::Admin::Department.new
+      authorize Department.new, :create?
+
+      @form = Admin::DepartmentForm.new(department: Department.new)
     end
 
     # post '/admin/departments'
     def create
-      @form = Forms::Admin::Department.new(attributes: request_params)
+      authorize Department.new, :create?
+
+      @form = Admin::DepartmentForm.new(attributes: request_params)
       if @form.save
-        redirect_to admin_departments_path, success: 'Department has been created'
+        redirect_to admin_departments_url, success: 'Department has been created'
       else
         render :new
       end
@@ -27,14 +31,18 @@ module Admin
 
     # get '/admin/departments/:id/edit'
     def edit
-      @form = Forms::Admin::Department.new(department: @department)
+      authorize @department, :update?
+
+      @form = Admin::DepartmentForm.new(department: @department)
     end
 
     # put|patch '/admin/departments/:id'
     def update
-      @form = Forms::Admin::Department.new(department: @department, attributes: request_params)
+      authorize @department, :update?
+
+      @form = Admin::DepartmentForm.new(department: @department, attributes: request_params)
       if @form.update
-        redirect_to admin_departments_path, success: 'Department has been updated'
+        redirect_to admin_departments_url, success: 'Department has been updated'
       else
         render :edit
       end
@@ -42,7 +50,10 @@ module Admin
 
     # delete '/admin/departments/:id'
     def destroy
+      authorize @department, :destroy?
+
       @department.destroy
+      render json: { status: 'success', message: 'Department has been deleted' }.compact, status: 200
     end
 
     private

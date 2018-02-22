@@ -20,7 +20,8 @@ gem 'bootstrap_form',
 gem 'sass-rails', '~> 5.0'
 gem 'slim-rails', '~> 3.1'
 gem 'uglifier', '>= 1.3.0'
-gem 'webpacker', '~> 3.0'
+gem 'turbolinks', '~> 5.0.0'
+gem 'webpacker', '~> 3.2'
 
 # Pagination
 gem 'kaminari', '~> 1.1'

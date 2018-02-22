@@ -1,230 +1,119 @@
-$(function () {
+// $(function () {
+document.addEventListener('turbolinks:load', function() {
+
   'use strict';
 
-  $(function () {
-    $('.preloader').fadeOut();
-  });
+  // $(document).on('click', '.mega-dropdown', function (e) {
+  //   e.stopPropagation();
+  // });
 
-  $(document).on('click', '.mega-dropdown', function (e) {
-    e.stopPropagation();
-  });
+  // $('.dropify').dropify();
 
-  $('.dropify').dropify();
+  // $('.user-datepicker').bootstrapMaterialDatePicker({
+  //   weekStart: 0,
+  //   time: false,
+  //   format: 'dddd DD MMMM YYYY',
+  //   maxDate: new Date,
+  //   clearButton: true
+  // });
+  //
+  // $('.user-birth-datepicker').bootstrapMaterialDatePicker({
+  //   weekStart: 0,
+  //   time: false,
+  //   format: 'dddd DD MMMM YYYY',
+  //   maxDate: moment().subtract(18, 'years').toDate(),
+  //   clearButton: true
+  // });
 
-  $('.user-datepicker').bootstrapMaterialDatePicker({
-    weekStart: 0,
-    time: false,
-    format: 'dddd DD MMMM YYYY',
-    maxDate: new Date,
-    clearButton: true
-  });
+  // $('.search-box a, .search-box .app-search .srh-btn').on('click', function () {
+  //   $('.app-search').toggle(200);
+  // });
 
-  $('.user-birth-datepicker').bootstrapMaterialDatePicker({
-    weekStart: 0,
-    time: false,
-    format: 'dddd DD MMMM YYYY',
-    maxDate: moment().subtract(18, 'years').toDate(),
-    clearButton: true
-  });
+  // $(function () {
+  //   $('[data-toggle="tooltip"]').tooltip();
+  // });
 
-  // ==============================================================
-  // This is for the top header part and sidebar part
-  // ==============================================================
-  var set = function () {
-    var $body = $('body');
-    var width = (window.innerWidth > 0) ? window.innerWidth : this.screen.width;
-    var topOffset = 70;
+  // $(function () {
+  //   $('[data-toggle="popover"]').popover();
+  // });
 
-    if (width < 1170) {
-      $body.addClass('mini-sidebar')
-      $('.navbar-brand span').hide()
-      $('.sidebartoggler i').addClass('ti-menu')
-    }
-    else {
-      $body.removeClass('mini-sidebar')
-      $('.navbar-brand span').show()
-      $('.sidebartoggler i').removeClass('ti-menu')
-    }
+  // $(function () {
+  //   $('#sidebarnav').metisMenu();
+  // });
 
-    var height = ((window.innerHeight > 0)
-      ? window.innerHeight
-      : this.screen.height) - 1;
-
-    height = height - topOffset;
-
-    if (height < 1) height = 1;
-    if (height > topOffset) {
-      $('.page-wrapper').css('min-height', (height) + 'px');
-    }
-
-  };
-  $(window).ready(set)
-  $(window).on('resize', set)
-
-  // Theme options
-  $('.sidebartoggler').on('click', function () {
-    var $body = $('body');
-
-    if ($body.hasClass('mini-sidebar')) {
-      $body.trigger('resize');
-
-      $('.scroll-sidebar, .slimScrollDiv').
-        css('overflow', 'hidden').
-        parent().
-        css('overflow', 'visible');
-
-      $body.removeClass('mini-sidebar');
-      $('.navbar-brand span').show();
-      $('.sidebartoggler i').addClass('ti-menu');
-    } else {
-      $body.trigger('resize');
-
-      $('.scroll-sidebar, .slimScrollDiv').
-        css('overflow-x', 'visible').
-        parent().
-        css('overflow', 'visible');
-
-      $body.addClass('mini-sidebar');
-      $('.navbar-brand span').hide();
-      $('.sidebartoggler i').removeClass('ti-menu');
-    }
-  });
-
-  // topbar stickey on scroll
-  $('.fix-header .topbar').stick_in_parent({});
-
-  // this is for close icon when navigation open in mobile view
-  $('.nav-toggler').click(function () {
-    var $navToggler = $('.nav-toggler i');
-
-    $('body').toggleClass('show-sidebar');
-    $navToggler.toggleClass('mdi mdi-menu');
-    $navToggler.addClass('ti-close');
-  })
-
-  $('.search-box a, .search-box .app-search .srh-btn').on('click', function () {
-    $('.app-search').toggle(200);
-  });
-
-  // ==============================================================
-  // Right sidebar options
-  // ==============================================================
-  $('.right-side-toggle').click(function () {
-    var $rightSidebar = $('.right-sidebar');
-
-    $rightSidebar.slideDown(50);
-    $rightSidebar.toggleClass('shw-rside');
-  });
-
-  // Auto select left navbar
-  $(function () {
-    var url = window.location
-    var $el = $('ul#sidebarnav a').filter(function () {
-      return this.href === url;
-    })
-      .addClass('active')
-      .parent()
-      .addClass('active');
-
-    while (true) {
-      if ($el.is('li')) {
-        $el = $el.parent().addClass('in').parent().addClass('active');
-      } else {
-        break;
-      }
-    }
-
-  });
-
-  // Tooltip
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip();
-  });
-
-  // Popovers
-  $(function () {
-    $('[data-toggle="popover"]').popover();
-  });
-
-  // Sidebarmenu
-  $(function () {
-    $('#sidebarnav').metisMenu();
-  });
-
-  // Slimscrollbars
-  $('.message-center').slimScroll({
-    position: 'right',
-    size    : '5px',
-    color   : '#dcdcdc'
-  });
-
-  $('.aboutscroll').slimScroll({
-    position: 'right',
-    size    : '5px',
-    height  : '80',
-    color   : '#dcdcdc'
-  });
-
-  $('.message-scroll').slimScroll({
-    position: 'right',
-    size    : '5px',
-    height  : '570',
-    color   : '#dcdcdc'
-  });
-
-  $('.chat-box').slimScroll({
-    position: 'right',
-    size    : '5px',
-    height  : '470',
-    color   : '#dcdcdc'
-  });
-
-  $('.slimscrollright').slimScroll({
-    position: 'right',
-    height  : '100%',
-    size    : '5px',
-    color   : '#dcdcdc'
-  });
+  // $('.message-center').slimScroll({
+  //   position: 'right',
+  //   size    : '5px',
+  //   color   : '#dcdcdc'
+  // });
+  //
+  // $('.aboutscroll').slimScroll({
+  //   position: 'right',
+  //   size    : '5px',
+  //   height  : '80',
+  //   color   : '#dcdcdc'
+  // });
+  //
+  // $('.message-scroll').slimScroll({
+  //   position: 'right',
+  //   size    : '5px',
+  //   height  : '570',
+  //   color   : '#dcdcdc'
+  // });
+  //
+  // $('.chat-box').slimScroll({
+  //   position: 'right',
+  //   size    : '5px',
+  //   height  : '470',
+  //   color   : '#dcdcdc'
+  // });
+  //
+  // $('.slimscrollright').slimScroll({
+  //   position: 'right',
+  //   height  : '100%',
+  //   size    : '5px',
+  //   color   : '#dcdcdc'
+  // });
 
   // Resize all elements
-  $('body').trigger('resize');
+  // $('body').trigger('resize');
 
   // Collapsible cards
-  $('a[data-action="collapse"]').on('click', function (e) {
-    e.preventDefault();
-
-    $(this)
-      .closest('.card')
-      .find('[data-action="collapse"] i')
-      .toggleClass('ti-minus ti-plus');
-
-    $(this)
-      .closest('.card')
-      .children('.card-body')
-      .collapse('toggle');
-
-  })
+  // $('a[data-action="collapse"]').on('click', function (e) {
+  //   e.preventDefault();
+  //
+  //   $(this)
+  //   .closest('.card')
+  //   .find('[data-action="collapse"] i')
+  //   .toggleClass('ti-minus ti-plus');
+  //
+  //   $(this)
+  //   .closest('.card')
+  //   .children('.card-body')
+  //   .collapse('toggle');
+  //
+  // })
 
   // Toggle fullscreen
-  $('a[data-action="expand"]').on('click', function (e) {
-    e.preventDefault();
-
-    $(this)
-      .closest('.card')
-      .find('[data-action="expand"] i')
-      .toggleClass('mdi-arrow-expand mdi-arrow-compress');
-
-    $(this)
-      .closest('.card')
-      .toggleClass('card-fullscreen');
-  })
+  // $('a[data-action="expand"]').on('click', function (e) {
+  //   e.preventDefault();
+  //
+  //   $(this)
+  //   .closest('.card')
+  //   .find('[data-action="expand"] i')
+  //   .toggleClass('mdi-arrow-expand mdi-arrow-compress');
+  //
+  //   $(this)
+  //   .closest('.card')
+  //   .toggleClass('card-fullscreen');
+  // })
 
   // Close Card
-  $('a[data-action="close"]').on('click', function () {
-    $(this)
-      .closest('.card')
-      .removeClass()
-      .slideUp('fast');
-  });
+  // $('a[data-action="close"]').on('click', function () {
+  //   $(this)
+  //   .closest('.card')
+  //   .removeClass()
+  //   .slideUp('fast');
+  // });
 
 });

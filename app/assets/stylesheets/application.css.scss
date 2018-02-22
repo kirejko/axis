@@ -22,8 +22,10 @@
 @import 'theme/plugins/dropify/css/dropify';
 @import 'theme/plugins/datetimepicker/css/bootstrap-material-datetimepicker';
 @import 'theme/plugins/toast-master/toast';
+@import 'theme/plugins/swal/sweetalert';
 
 //@import 'theme/colors/purple';
 @import 'theme/colors/blue';
 
+@import 'custom/base';
 @import 'custom/forms';

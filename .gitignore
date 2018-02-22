@@ -20,7 +20,8 @@
 /config/application.yml
 /public/packs
 /public/packs-test
+/public/uploads
 /node_modules
 yarn-debug.log*
 yarn-error.log*
-/public/uploads
+/public/uploads/public/packs

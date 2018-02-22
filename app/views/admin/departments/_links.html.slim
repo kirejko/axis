@@ -18,7 +18,7 @@
       - elsif %w(edit update).include?(action_name)
         li.breadcrumb-item Edit
 
-  - if action_name === 'index'
+  - if action_name === 'index' && policy(Department.new).create?
     .col-md-7.col-4.align-self-center
       .d-flex.m-t-10.justify-content-end
         a.right-side-toggle.waves-effect.waves-light.btn-danger.btn.btn-circle.btn-sm.pull-right.m-l-10 href=new_admin_department_path

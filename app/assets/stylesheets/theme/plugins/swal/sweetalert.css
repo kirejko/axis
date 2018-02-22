@@ -1,0 +1,51 @@
+.swal-modal {
+    width: 478px;
+    border-radius: 0;
+}
+
+.swal-button {
+    border-radius: 0;
+    font-weight: 400;
+    font-size: 12px;
+    padding: 10px 35px;
+}
+
+.swal-footer {
+    text-align: center;
+    padding-top: 13px;
+    margin-top: 10px;
+    padding: 15px 20px;
+    border-radius: inherit;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.swal-title {
+    color: rgba(0, 0, 0, .65);
+    font-weight: 600;
+    text-transform: none;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    font-size: 25px;
+    line-height: normal;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.swal-text {
+    font-size: 13px;
+    position: relative;
+    float: none;
+    line-height: normal;
+    vertical-align: top;
+    text-align: left;
+    display: inline-block;
+    margin: 0;
+    padding: 0 10px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, .64);
+    max-width: calc(100% - 20px);
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+}
