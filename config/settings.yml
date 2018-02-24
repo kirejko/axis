@@ -1,0 +1,19 @@
+sidekiq:
+  redis:
+    namespace: axis
+    url: redis://127.0.0.1:6379/0
+mailer:
+  delivery: :smtp
+  smtp:
+    user_name:
+    password:
+    address:
+    domain:
+    port:
+    authentication:
+  from:
+    email:
+    name:
+  asset_host:
+  url_options:
+    host:

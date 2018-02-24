@@ -1,45 +1,4 @@
 = render partial: 'admin/departments/links'
 
 = bootstrap_form_for @form, url: admin_departments_path, html: { class: 'form-material m-t-10 row' } do |f|
-
-  - if @form.errors.any? && Rails.env.development?
-    .col-md-12
-      .ribbon-vwrapper.card
-        .ribbon.ribbon-danger.ribbon-vertical-l
-          i.fas.fa-exclamation-triangle
-        .ribbon-content
-          ul.list-icons.m-l-5
-            - @form.errors.each do |field, error|
-              li
-                i.ti-angle-right
-                = "#{field.to_s.titleize} #{error}"
-
-  .col-md-6
-    .ribbon-wrapper.card
-      .ribbon.ribbon-default
-        | Department details
-      .ribbon-content
-        small
-          code.text-info Please indicate department title and brief description
-
-        = f.text_field :name, hide_label: true,
-            wrapper: { class: 'm-t-25' },
-            autocomplete: 'off',
-            required: true,
-            placeholder: '* Department Title',
-            help: 'Publicly visible headline'
-
-  .col-md-6
-    .card
-      .card-body
-
-        = f.text_area :description, label: 'Brief description',
-            wrapper: { class: 'm-b-15 m-t-10' },
-            autocomplete: 'off',
-            placeholder: '* Example: All the collest guys live here and do the magick!',
-            rows: 3,
-            help: 'In order to better understand the purpose of the deptartment'
-
-  .col-md-12.col-xs-12
-    = f.button :submit, class: 'btn waves-effect waves-light btn-block btn-info' do
-      | Create department
+  = render partial: 'admin/departments/form', locals: { form: @form, f: f }

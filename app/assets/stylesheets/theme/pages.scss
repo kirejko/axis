@@ -2961,7 +2961,15 @@ ribbons page
 .ribbon-wrapper-bottom,
 .ribbon-wrapper-right-bottom {
   position: relative;
-  padding: 50px 15px 15px 15px;
+  padding: {
+    top: 50px;
+    right: 15px;
+    bottom: 15px;
+    left: 15px;
+  }
+  .has-bottom-ribbon {
+    padding-bottom: 50px;
+  }
 }
 
 .ribbon-vwrapper {
@@ -2996,6 +3004,17 @@ ribbons page
   clear: left;
   position: absolute;
   top: 12px;
+  left: -2px;
+  color: $white;
+}
+
+.ribbon-bottom {
+  padding: 0 20px;
+  height: 30px;
+  line-height: 30px;
+  clear: left;
+  position: absolute;
+  bottom: 12px;
   left: -2px;
   color: $white;
 }

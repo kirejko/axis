@@ -7,21 +7,25 @@ end
 
 ruby '2.5.0'
 
-gem 'pg', '~> 0.21'
-gem 'rails', '~> 5.1.4'
+gem 'pg', '~> 1.0'
+gem 'rails', '~> 5.1.5'
+
+# ENV and settings management
+gem 'figaro', '~> 1.1'
+gem 'config', '~> 1.7'
 
 # Templates, styles, JS
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails', '~> 4.3'
-gem 'font-awesome-rails'
+gem 'sass-rails', '~> 5.0'
+gem 'slim-rails', '~> 3.1'
+gem 'uglifier', '~> 4.1'
+gem 'turbolinks', '~> 5.0.0'
+gem 'webpacker', '~> 3.2'
+# TO use bootstrap4 we need master branch
 gem 'bootstrap_form',
     git: 'https://github.com/bootstrap-ruby/bootstrap_form.git',
     branch: 'master'
-gem 'sass-rails', '~> 5.0'
-gem 'slim-rails', '~> 3.1'
-gem 'uglifier', '>= 1.3.0'
-gem 'turbolinks', '~> 5.0.0'
-gem 'webpacker', '~> 3.2'
 
 # Pagination
 gem 'kaminari', '~> 1.1'
@@ -36,7 +40,8 @@ gem 'oj', '~> 3.4'
 
 # Cache
 gem 'dalli', '~> 2.7', '>= 2.7.6'
-gem 'redis', '~> 3.0'
+gem 'redis', '~> 4.0'
+gem 'redis-namespace', '~> 1.6'
 
 # Background delayed and cron jobs.
 # https://github.com/mperham/sidekiq
@@ -58,9 +63,6 @@ gem 'mini_magick', '~> 4.8'
 
 # Other
 gem 'default_value_for', '~> 3.0', '>= 3.0.5'
-
-# ENV management
-gem 'figaro', '~> 1.1'
 
 group :development, :test do
   gem 'database_cleaner', '~> 1.6'

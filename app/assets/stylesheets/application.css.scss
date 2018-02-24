@@ -1,14 +1,14 @@
+@import 'theme/variable';
 @import 'bootstrap';
-@import 'theme/css/prism';
 
 @import 'theme/icons/font-awesome/scss/fontawesome';
 @import 'theme/icons/font-awesome/scss/fa-regular';
 @import 'theme/icons/font-awesome/scss/fa-solid';
 @import 'theme/icons/font-awesome/scss/fa-brands';
+
 @import 'theme/icons/material-design-iconic-font/scss/material-design-iconic-font';
 @import 'theme/icons/themify-icons/themify-icons';
 
-@import 'theme/variable';
 @import 'theme/app';
 @import 'theme/pages';
 @import 'theme/sidebar';
@@ -29,3 +29,6 @@
 
 @import 'custom/base';
 @import 'custom/forms';
+
+// Syntax highlighter
+// @import 'theme/css/prism';

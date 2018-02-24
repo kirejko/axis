@@ -8,8 +8,13 @@
 // layout file, like app/views/layouts/application.html.erb
 
 window.$ = window.jQuery = require('jquery')
-
 require('jquery-toast-plugin')
+
+// import faLib from '@fortawesome/fontawesome'
+// import brands from '@fortawesome/fontawesome-free-brands'
+// import solid from '@fortawesome/fontawesome-free-solid'
+// import regular from '@fortawesome/fontawesome-free-regular'
+// faLib.library.add(brands, solid, regular)
 
 import Vue from 'vue/dist/vue.esm'
 import TurbolinksAdapter from 'vue-turbolinks';
