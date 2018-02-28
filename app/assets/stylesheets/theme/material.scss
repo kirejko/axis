@@ -467,15 +467,6 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
 .page-titles .justify-content-end:last-child .d-flex{
   margin-right:10px;
 }
-.btn-circle.right-side-toggle{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  padding:25px;
-  z-index: 1000;
-}
-
-
 
 /*Radio button*/
 @keyframes ripple {

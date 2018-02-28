@@ -19,6 +19,7 @@ html
             // == render partial: 'shared/flash' unless flash.empty?
             == yield
 
-          .footer.text-left
+          .footer.text-left.fixed-bottom
             |  © #{Date.current.year} Axis by
-            ==< link_to 'AMgrade.com', 'https://amgrade.com'
+            a href="https://amgrade.com"
+              = image_tag 'logo-h.svg', alt: 'AMgrade', height: '20', class: 'm-l-10'

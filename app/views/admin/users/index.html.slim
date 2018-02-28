@@ -1,7 +1,7 @@
-= render partial: 'users/links'
+= render partial: 'admin/users/links'
 .row
   - @users.each do |user|
-    = render partial: 'users/card', locals: { user: user }
+    = render partial: 'admin/users/card', locals: { user: user }
 
 .row
   .col-md-12

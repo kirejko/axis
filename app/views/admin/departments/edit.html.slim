@@ -1,4 +1,4 @@
 = render partial: 'admin/departments/links'
 
-= bootstrap_form_for @form, url: admin_department_path(@department), html: { class: 'form-material m-t-10 row' } do |f|
+= bootstrap_form_for @form, url: admin_department_path(@department), method: 'patch', html: { class: 'form-material m-t-10 row' } do |f|
   = render partial: 'admin/departments/form', locals: { form: @form, f: f }

@@ -35,4 +35,14 @@ en:
       models:
         user:
           attributes:
-
+        department:
+          attributes:
+  views:
+    pagination:
+      first: "«"
+      next: "›"
+      last: "»"
+      previous: "‹"
+    user:
+      card:
+        nodept: "No department"

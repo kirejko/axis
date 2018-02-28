@@ -1,21 +1,24 @@
 .col-lg-6.col-md-12.col-sm-12.col-xs-12
   .card.ribbon-wrapper.has-bottom-ribbon style="min-height: 200px;"
     .card-body
-      .ribbon.ribbon-default.col-md-9
+      .ribbon.ribbon-default.bg-light.text-dark.text-bold.col-md-9
         = department.name
 
-      .ribbon-bottom.ribbon-default.bg-primary.col-md-2.col-sm-2.col-xs-2
-        .small
-          i.zmdi.zmdi-accounts-outline.m-r-10
-          = department.users_count
+      / .ribbon-bottom.ribbon-muted.col-md-2.col-sm-2.col-xs-2
+      /   .small
+      /     i.zmdi.zmdi-accounts-outline.m-r-10
+      /     = department.users_count
 
+      small.text-primary style="position: absolute; bottom: 20px; left: 25px"
+        i.zmdi.zmdi-accounts-outline.m-r-10
+        = department.users_count
 
       small style="position: absolute; bottom: 20px; right: 25px"
-        a.text-muted href=edit_admin_department_path(department)
-          i.far.fa-edit
+        delete-item[url=admin_department_path(department)]
 
       small style="position: absolute; bottom: 20px; right: 60px"
-        delete-item[url=admin_department_path(department)]
+        a.link href=edit_admin_department_path(department)
+          i.far.fa-edit
 
 
       .ribbon-content

@@ -9,6 +9,7 @@ File: scss
 $themecolor: #1e88e5;
 $themecolor-dark: #028ee1;
 $topbar: #1e88e5;
+$topbar-alt: #1a6af0;
 $themecolor-alt: #26c6da;
 /*******************
 /*Top bar
@@ -16,10 +17,14 @@ $themecolor-alt: #26c6da;
 
 .topbar {
     background: $topbar;
-    .navbar-header{
-       
-    }
-    
+
+    /* Old browsers */
+    background: -moz-linear-gradient(left, $topbar 0%, $topbar-alt 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, $themecolor 0%, $topbar-alt 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, $themecolor 0%, $topbar-alt 100%);
+
     .top-navbar .navbar-header .navbar-brand .dark-logo{
         display: none;
     }
@@ -38,7 +43,6 @@ $themecolor-alt: #26c6da;
         }
     }
 }
-
 
 /*******************
 /*General Elements

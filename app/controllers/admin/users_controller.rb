@@ -9,6 +9,15 @@ module Admin
       @users = User.includes(:profile).ordered.page(params[:page]).decorate
     end
 
+    def new
+      authorize User.new, :create?
+
+    end
+
+    def create
+
+    end
+
     private
 
     def set_user

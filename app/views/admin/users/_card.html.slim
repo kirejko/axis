@@ -1,22 +1,33 @@
-.col-md-4.col-lg-4.col-xlg-3
-  .card
+.col-lg-4.col-md-12.col-sm-12.col-xs-12
+  .card.ribbon-wrapper.has-bottom-ribbon style="min-height: 200px;"
     .card-body
-      .row
-        .col-md-4.col-lg-3.text-center
-          a href=user_path(user)
-            = image_tag(user.avatar.url(:md), class: 'img-circle img-responsive')
+      .ribbon.ribbon-muted.bg-light.text-dark.col-lg-9.col-md-12.col-sm-12.col-xs-12
+        /= link_to user.profile.position, user_path(user)
+        = user.profile.position
 
-        .col-md-8.col-lg-9
-          h3.box-title.m-b-0
-            = link_to user.profile.full_name, user_path(user)
-          small.position
-            = user.profile.position
-          br
-          a href="skype:#{user.profile.skype}?call"
-            small
-              i.fab.fa-skype.m-r-5
-              = user.profile.skype
+      small style="position: absolute; bottom: 20px; left: 25px;"
+        i.zmdi.zmdi-account-box-o.m-r-10
+        = user.department.nil? ? t('views.user.card.nodept') : user.department.name
 
-    .card-footer.small.text-right
-      a.card-link href="#" Edit profile
-      a.card-link.text-danger href="#" Delete profile
+      small style="position: absolute; bottom: 20px; right: 25px"
+        a.text-muted href=edit_admin_user_path(user)
+          i.far.fa-edit
+
+      small style="position: absolute; bottom: 20px; right: 60px"
+        delete-item[url=admin_user_path(user)]
+
+      .ribbon-content
+        .row
+          .col-md-4.col-lg-3.text-center
+            a href="#"
+              = image_tag(user.avatar.url(:md), class: 'img-circle img-responsive')
+
+          .col-md-8.col-lg-9
+            h3.box-title.m-b-0
+              /= link_to user.profile.full_name, user_path(user)
+              = user.profile.full_name
+            a.link href="skype:#{user.profile.skype}?call"
+              small
+                i.fab.fa-skype.m-r-5
+                = user.profile.skype
+

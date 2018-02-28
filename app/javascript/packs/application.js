@@ -9,6 +9,7 @@
 
 window.$ = window.jQuery = require('jquery')
 require('jquery-toast-plugin')
+require('bootstrap')
 
 // import faLib from '@fortawesome/fontawesome'
 // import brands from '@fortawesome/fontawesome-free-brands'
@@ -38,6 +39,7 @@ document.addEventListener('turbolinks:load', () => {
       $('.preloader').fadeOut()
 
       require('../helpers/theme')
+      require('../helpers/fab')
     },
 
     created() {
