@@ -12,16 +12,35 @@ module Admin
     def new
       authorize User.new, :create?
 
+      @form = Admin::UserRegistrationForm.new
     end
 
     def create
+      authorize User.new, :create?
 
+      @form = Admin::UserRegistrationForm.new(create_user_params)
+      if @form.save
+        redirect_to admin_users_url, notice: 'User has been created'
+      else
+        render :new
+      end
     end
 
     private
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def create_user_params
+      params.require(:register).permit(%i[
+      avatar email password password_confirmation
+      first_name middle_name last_name
+      position department remote_worker remote_hourly
+      trial_at hired_at
+      gmail skype phone1 phone2
+      gender birthday notes
+    ])
     end
 
   end

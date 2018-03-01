@@ -1,14 +1,6 @@
 @import 'theme/variable';
 @import 'bootstrap';
 
-@import 'theme/icons/font-awesome/scss/fontawesome';
-@import 'theme/icons/font-awesome/scss/fa-regular';
-@import 'theme/icons/font-awesome/scss/fa-solid';
-@import 'theme/icons/font-awesome/scss/fa-brands';
-
-@import 'theme/icons/material-design-iconic-font/scss/material-design-iconic-font';
-@import 'theme/icons/themify-icons/themify-icons';
-
 @import 'theme/app';
 @import 'theme/pages';
 @import 'theme/sidebar';
@@ -29,6 +21,12 @@
 @import 'custom/base';
 @import 'custom/forms';
 @import 'custom/fab';
+
+@import url('https://use.fontawesome.com/releases/v5.0.7/css/all.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import 'theme/icons/themify-icons/themify-icons';
+
 
 // Syntax highlighter
 // @import 'theme/css/prism';

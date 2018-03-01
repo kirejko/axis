@@ -3,10 +3,11 @@ html
   head
     title
       | AMgrade Axis
+    link[rel="apple-touch-icon" href="/favicon.png"]
     == csrf_meta_tags
-    == stylesheet_link_tag 'application', media: 'all', integrity: true, 'data-turbolinks-track': 'reload'
-    == javascript_include_tag :application, media: 'all', integrity: true, defer: true, 'data-turbolinks-track': 'reload'
-    == javascript_pack_tag 'application', media: 'all', integrity: true, defer: true, 'data-turbolinks-track': 'reload'
+    == stylesheet_link_tag 'application', media: 'all', integrity: true, 'data-turbolinks-track': true
+    == javascript_include_tag 'application', media: 'all', integrity: true, defer: true, 'data-turbolinks-track': true
+    == javascript_pack_tag 'application', media: 'all', integrity: true, defer: true, 'data-turbolinks-track': true
 
   body.fix-header.card-no-border.logo-center
     #app[v-cloak]
@@ -19,7 +20,6 @@ html
             // == render partial: 'shared/flash' unless flash.empty?
             == yield
 
-          .footer.text-left.fixed-bottom
-            |  © #{Date.current.year} Axis by
+          .footer.text-center.fixed-bottom
             a href="https://amgrade.com"
-              = image_tag 'logo-h.svg', alt: 'AMgrade', height: '20', class: 'm-l-10'
+              = image_tag 'logo-h.svg', alt: 'AMgrade', height: '20'

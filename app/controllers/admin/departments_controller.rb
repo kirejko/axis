@@ -23,7 +23,7 @@ module Admin
 
       @form = Admin::DepartmentForm.new(attributes: request_params)
       if @form.save
-        redirect_to admin_departments_url, success: 'Department has been created'
+        redirect_to admin_departments_url, notice: 'Department has been created'
       else
         render :new
       end

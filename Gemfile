@@ -20,7 +20,7 @@ gem 'jquery-rails', '~> 4.3'
 gem 'sass-rails', '~> 5.0'
 gem 'slim-rails', '~> 3.1'
 gem 'uglifier', '~> 4.1'
-gem 'turbolinks', '~> 5.0.0'
+# gem 'turbolinks', '~> 5.0.0'
 gem 'webpacker', '~> 3.2'
 # TO use bootstrap4 we need master branch
 gem 'bootstrap_form',

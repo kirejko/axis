@@ -1,13 +1,17 @@
 require('dropify')
+require('bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker')
 
 $('.dropify').dropify();
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip({
-    container: 'body'
-  });
+$('[data-toggle="tooltip"]').tooltip({
+  container: 'body'
 });
 
-$(function () {
-  $('[data-toggle="popover"]').popover();
+$('[data-toggle="popover"]').popover();
+
+$('input.user-birth-datepicker').bootstrapMaterialDatePicker({
+  time: false,
+  nowButton: false,
+  maxDate: window.moment().subtract(18, 'years'),
+  format: "ddd, Do MMMM YYYY"
 });

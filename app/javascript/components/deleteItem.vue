@@ -1,6 +1,6 @@
 <template>
     <a href="#" @click.prevent="process()" class="text-danger">
-        <i class="far fa-trash-alt"></i>
+        <font-awesome-icon :icon="icon" />
     </a>
 </template>
 
@@ -10,11 +10,24 @@
 
   import swal from 'sweetalert'
 
+  import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+  import faTrashAlt from '@fortawesome/fontawesome-free-regular/faTrashAlt'
+
   export default {
     name: 'delete-item',
 
     props: {
       url: String
+    },
+
+    components: {
+      FontAwesomeIcon
+    },
+
+    computed: {
+      icon () {
+        return faTrashAlt
+      }
     },
 
     methods: {

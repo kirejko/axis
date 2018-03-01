@@ -8,6 +8,7 @@
 // layout file, like app/views/layouts/application.html.erb
 
 window.$ = window.jQuery = require('jquery')
+window.moment = require('moment')
 require('jquery-toast-plugin')
 require('bootstrap')
 
@@ -18,16 +19,17 @@ require('bootstrap')
 // faLib.library.add(brands, solid, regular)
 
 import Vue from 'vue/dist/vue.esm'
-import TurbolinksAdapter from 'vue-turbolinks';
+//import TurbolinksAdapter from 'vue-turbolinks';
 
-Vue.use(TurbolinksAdapter)
+//Vue.use(TurbolinksAdapter)
 
 import vbus from '../utils/vbus'
 import deleteItem from '../components/deleteItem.vue'
 
 import ucfirst from 'locutus/php/strings/ucfirst'
 
-document.addEventListener('turbolinks:load', () => {
+//document.addEventListener('turbolinks:load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   new Vue({
     el: '#app',
 
