@@ -3,9 +3,11 @@
 # List people
 class PeopleController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_person
+  before_action :set_person, only: %i[show]
 
-  def index; end
+  def index
+    @people = User.includes(:profile).ordered.page.decorate
+  end
 
   def show; end
 

@@ -1,2 +1,9 @@
-h1 People#index
-p Find me in app/views/people/index.html.slim
+= render partial: 'people/links'
+.row
+  - @people.each do |person|
+    = render partial: 'people/card', locals: { person: person }
+
+.row
+  .col-md-12
+    = paginate @people
+

@@ -23,11 +23,12 @@ Rails.application.routes.draw do
     root 'dashboard#index'
   end
 
-  # user routes
-
+  # people
   resources :people, only: %i[index show]
 
+  # app root
   root 'dashboard#index'
 
+  # all unmatched routes
   get '*unmatched_route', to: 'application#raise_not_found'
 end
