@@ -37,6 +37,15 @@ en:
           attributes:
         department:
           attributes:
+  activemodel:
+    errors:
+      models:
+        register:
+          attributes:
+            email:
+              disallowed_domain: "Domain is not allowed for corporate e-mail"
+            gmail:
+              disallowed_domain: "Email is not a valid Google account e-mail"
   views:
     pagination:
       first: "«"
@@ -46,3 +55,8 @@ en:
     user:
       card:
         nodept: "No department"
+  admin:
+    user:
+      messages:
+        create:
+          success: "User has been created"

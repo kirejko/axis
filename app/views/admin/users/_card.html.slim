@@ -9,12 +9,13 @@
         i.zmdi.zmdi-account-box-o.m-r-10
         = user.department.nil? ? t('views.user.card.nodept') : user.department.name
 
-      small style="position: absolute; bottom: 20px; right: 25px"
-        a.text-muted href=edit_admin_user_path(user)
-          i.far.fa-edit
+      - unless user.eql?(current_user)
+        small style="position: absolute; bottom: 20px; right: 25px"
+          a.text-muted href=edit_admin_user_path(user)
+            i.far.fa-edit
 
-      small style="position: absolute; bottom: 20px; right: 60px"
-        delete-item[url=admin_user_path(user)]
+        small style="position: absolute; bottom: 20px; right: 60px"
+          delete-item[url=admin_user_path(user)]
 
       .ribbon-content
         .row

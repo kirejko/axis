@@ -61,6 +61,9 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'carrierwave', '~> 1.2'
 gem 'mini_magick', '~> 4.8'
 
+# Validations
+gem 'date_validator'
+
 # Other
 gem 'default_value_for', '~> 3.0', '>= 3.0.5'
 

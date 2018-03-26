@@ -3,17 +3,32 @@
 # Custom email validation
 class EmailValidator < ActiveModel::EachValidator
 
-  ALLOWED_DOMAINS = {
-      email: ['amgrade.com'],
-      gmail: ['gmail.com']
-  }.freeze
+  MY_OPTIONS = { domains: [] }.freeze
 
-  def validate_each(record, attribute, value)
-    record.errors.add(attribute, :invalid) unless value.match?(Devise.email_regexp) && valid_domain(attribute, value)
+  def check_validity!
+    options.slice(*MY_OPTIONS.keys).each do |option, value|
+      next if value.is_a?(Array)
+      raise ArgumentError, "#{option} must be an array of domains"
+    end
   end
 
-  def valid_domain(attribute, value)
-    ALLOWED_DOMAINS[attribute].include?(value.split('@')[1])
+  def validate_each(record, attribute, value)
+    unless value.match?(Devise.email_regexp)
+      record.errors.add(attribute, :invalid, options)
+      return
+    end
+
+    if options.key?(:domains)
+      unless valid_domain?(value)
+        record.errors.add(attribute, :disallowed_domain, options)
+      end
+    end
+  end
+
+  private
+
+  def valid_domain?(value)
+    options[:domains].include?(value.split('@')[1])
   end
 
 end

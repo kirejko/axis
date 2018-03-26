@@ -49,15 +49,15 @@ module Admin
 
     def department_attributes
       {
-          name:        department.name,
-          description: department.description
+        name:        department.name,
+        description: department.description
       }
     end
 
     def department_permitted_params
       {
-          name:        name,
-          description: description
+        name:        name,
+        description: description
       }
     end
 
