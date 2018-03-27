@@ -55,6 +55,9 @@ en:
     user:
       card:
         nodept: "No department"
+    person:
+      card:
+        nodept: "No department"
   admin:
     user:
       messages:

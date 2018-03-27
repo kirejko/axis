@@ -4,11 +4,11 @@ aside.left-sidebar
       ul#sidebarnav
         li.nav-small-cap AMgrade
         li
-          a aria-expanded="false" href=root_path
+          a aria-expanded="false" href="#{root_path}"
             i.zmdi.zmdi-view-dashboard
             span.hide-menu Dashboard
         li
-          a aria-expanded="false" href="#"
+          a aria-expanded="false" href="#{people_path}"
             i.zmdi.zmdi-accounts-outline
             span.hide-menu People
         li
@@ -22,7 +22,7 @@ aside.left-sidebar
         - if current_user.admin?
           li.float-right
             a.has-arrow aria-expanded="false" href="#"
-              i.zmdi.zmdi-widgets
+              i.zmdi.zmdi-settings
               span.hide-menu = Admin
             ul.collapse aria-expanded="false"
               li

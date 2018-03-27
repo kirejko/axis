@@ -7,11 +7,11 @@ header.topbar.fixed-top
     .navbar-collapse
       ul.navbar-nav.mr-auto.mt-md-0
         li.nav-item
-          a.nav-link.nav-toggler.hidden-md-up.text-muted.waves-effect.waves-dark href="javascript:void(0)"
+          a.nav-link.nav-toggler.hidden-md-up.text-muted.waves-effect.waves-dark href="#"
             i.zmdi.zmdi-menu
 
         li.nav-item.hidden-sm-down.search-box
-          a.nav-link.hidden-sm-down.text-muted.waves-effect.waves-dark href="javascript:void(0)"
+          a.nav-link.hidden-sm-down.text-muted.waves-effect.waves-dark href="#"
             i.ti-search
           form.app-search
             input.form-control placeholder="Try John Doe..." type="text" /
@@ -19,15 +19,9 @@ header.topbar.fixed-top
               i.ti-close
       ul.navbar-nav.my-lg-0
 
-        / - if current_user.admin?
-        /   li.nav-item
-        /     a.nav-link.text-muted.waves-effect.waves-dark.p-t-10 href=admin_root_path
-        /       i.zmdi.zmdi-account-box-o
-
-
         // Messages
         li.nav-item.dropdown
-          a.nav-link.dropdown-toggle.text-muted.waves-effect.waves-dark.p-t-10[id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"]
+          a.nav-link.dropdown-toggle.text-muted.waves-effect.waves-dark.p-t-10[data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"]
             i.zmdi.zmdi-email
             .notify
               span.heartbit
@@ -46,7 +40,7 @@ header.topbar.fixed-top
 
         // Current User
         li.nav-item.dropdown
-          a.nav-link.dropdown-toggle.text-muted.waves-effect.waves-dark data-toggle="dropdown" href=""
+          a.nav-link.dropdown-toggle.text-muted.waves-effect.waves-dark[data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"]
             = image_tag current_user.avatar.url(:xs), class: 'profile-pic', alt: current_user.profile.full_name
           .dropdown-menu.dropdown-menu-right.scale-up
             ul.dropdown-user

@@ -1,0 +1,26 @@
+.col-lg-4.col-md-12.col-sm-12.col-xs-12
+  .card.ribbon-wrapper.has-bottom-ribbon style="min-height: 200px;"
+    .card-body
+      .ribbon.ribbon-muted.bg-light.text-dark.col-lg-11.col-md-12.col-sm-12.col-xs-12
+        /= link_to person.profile.position, person_path(person)
+        = person.profile.position
+
+      small style="position: absolute; bottom: 20px; left: 25px;"
+        i.zmdi.zmdi-account-box-o.m-r-10
+        = person.department.nil? ? t('views.person.card.nodept') : person.department.name
+
+      .ribbon-content
+        .row
+          .col-md-4.col-lg-3.text-center
+            a href="#"
+              = image_tag(person.avatar.url(:md), class: 'img-circle img-responsive')
+
+          .col-md-8.col-lg-9
+            h3.box-title.m-b-0
+              /= link_to person.profile.full_name, person_path(person)
+              = person.profile.full_name
+            a.link href="skype:#{person.profile.skype}?call"
+              small
+                i.fab.fa-skype.m-r-5
+                = person.profile.skype
+

@@ -1,7 +1,7 @@
-// $(function () {
-document.addEventListener('turbolinks:load', function() {
+$(function () {
+// document.addEventListener('DOMContentLoaded', function() {
 
-  'use strict';
+  // 'use strict';
 
   // $(document).on('click', '.mega-dropdown', function (e) {
   //   e.stopPropagation();

@@ -6,9 +6,3 @@ axios.defaults.headers.common['X-CSRF-Token'] = token
 axios.defaults.headers.common['Accept'] = 'application/json'
 
 export default axios.create()
-
-// export const http = axios.create({
-//   'X-CSRF-TOKEN': token,
-//   'X-Requested-With': 'XMLHttpRequest',
-//   'Accept': 'application/json'
-// })

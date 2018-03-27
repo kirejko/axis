@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     created() {
       vbus.$on('envelope', (envelope) => {
-        document.addEventListener('turbolinks:load', () => {
+        document.addEventListener('DOMContentLoaded', () => {
 
           $.toast({
             heading:   ucfirst(envelope.status),
