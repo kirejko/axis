@@ -27,11 +27,11 @@ module Admin
     end
 
     def edit
-      authorize User, :udpate?
+      authorize User, :update?
     end
 
     def update
-      authorize User, :udpate?
+      authorize User, :update?
     end
 
     private
