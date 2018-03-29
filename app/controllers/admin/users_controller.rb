@@ -6,7 +6,7 @@ module Admin
     before_action :set_user, only: %i[edit update destroy]
 
     def index
-      @users = User.includes(:profile).ordered.page.decorate
+      @users = User.includes(:profile).ordered.page(params[:page]).decorate
     end
 
     def new

@@ -1,0 +1,29 @@
+= bootstrap_form_for @form, url: url, method: method.to_s, html: { class: 'form-material m-t-10 row', multipart: true } do |f|
+  - if @form.errors.any? && Rails.env.development?
+    .col-md-12
+      .ribbon-vwrapper.card
+        .ribbon.ribbon-danger.ribbon-vertical-l
+          i.fas.fa-exclamation-triangle
+        .ribbon-content
+          ul.list-icons.m-l-5
+            - @form.errors.each do |field, error|
+              li
+                i.ti-angle-right
+                = "#{field.to_s.titleize} #{error}"
+
+  = f.text_field :title, hide_label: true,
+          wrapper: { class: 'm-t-25' },
+          autocomplete: 'off',
+          required: true,
+          placeholder: 'Title'
+
+  = f.text_field :body, hide_label: true,
+          wrapper: { class: 'm-t-25' },
+          autocomplete: 'off',
+          required: true,
+          placeholder: 'Body'
+
+  .col-md-12.col-xs-12
+    = f.button :submit, class: 'btn waves-effect waves-light btn-block btn-info' do
+      | Create Article
+

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
     resources :departments, except: :show
     resources :users
+    resources :articles
 
     # Admin root path
     root 'dashboard#index'
@@ -25,6 +26,9 @@ Rails.application.routes.draw do
 
   # people
   resources :people, only: %i[index show]
+
+  # articles
+  resources :articles, only: %i[index show]
 
   # app root
   root 'dashboard#index'

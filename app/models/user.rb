@@ -13,6 +13,7 @@ class User < ApplicationRecord
   # Relations
   has_one :profile, dependent: :destroy, autosave: true
   belongs_to :department, optional: true, counter_cache: true
+  has_many :articles
 
   # Default values
   default_value_for :role, ROLES[:user]

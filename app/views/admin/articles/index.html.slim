@@ -1,0 +1,8 @@
+= render partial: 'admin/articles/links'
+
+.row
+  - @articles.each do |article|
+    = render partial: 'admin/articles/preview', locals: { article: article }
+.row
+  .col-md-12
+    = paginate @articles

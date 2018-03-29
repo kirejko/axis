@@ -45,18 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     created() {
-      vbus.$on('envelope', (envelope) => {
-        document.addEventListener('DOMContentLoaded', () => {
-
-          $.toast({
-            heading:   ucfirst(envelope.status),
-            text:      envelope.message,
-            position:  'top-right',
-            loaderBg:  '#ff6849',
-            icon:      envelope.status,
-            hideAfter: 5000,
-            stack:     3,
-          })
+      vbus.$on('envelope', ({message, status}) => {
+        $.toast({
+          heading: ucfirst(status),
+          text: message,
+          position: 'top-right',
+          loaderBg: '#ff6849',
+          icon: status,
+          hideAfter: 5000,
+          stack: 3,
+          afterHidden() {
+            window.location = location.toString()
+          },
         })
       })
     }

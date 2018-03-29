@@ -15,8 +15,10 @@ aside.left-sidebar
           a aria-expanded="false" href="#"
             i.zmdi.zmdi-cloud-outline-alt
             span.hide-menu Documents
-
-
+        li
+          a aria-expanded="false" href="#{articles_path}"
+            i.zmdi.zmdi-cloud-outline-alt
+            span.hide-menu Knowledge Base
 
         // Please keep this menu item ad the end ad it floats to right side
         - if current_user.admin?
@@ -31,6 +33,9 @@ aside.left-sidebar
               li
                 a href=admin_departments_path
                   | Manage department
+              li
+                a href=admin_articles_path
+                  | Manage Knowledge base
               li
                 a  target="_blank" href=admin_sidekiq_web_path
                   | Sidekiq Dashboard

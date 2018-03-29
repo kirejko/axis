@@ -34,7 +34,5 @@ module Admin
       ActiveModel::Name.new(self, nil, 'User')
     end
 
-
-
   end
 end

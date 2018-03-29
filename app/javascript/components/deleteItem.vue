@@ -1,6 +1,6 @@
 <template>
     <a href="#" @click.prevent="process()" class="text-danger">
-        <font-awesome-icon :icon="icon" />
+        <font-awesome-icon :icon="icon"/>
     </a>
 </template>
 
@@ -25,7 +25,7 @@
     },
 
     computed: {
-      icon () {
+      icon() {
         return faTrashAlt
       }
     },
@@ -39,31 +39,22 @@
           buttons: true,
           dangerMode: true,
         })
-        .then((willDelete) => {
-          if (willDelete) {
+          .then((willDelete) => {
+            if (willDelete) {
 
-            http.delete(this.url)
-            .then(response => {
-              vbus.$emit('envelope', response.data)
+              http.delete(this.url)
+                .then(({data}) => {
+                  vbus.$emit('envelope', data)
+                })
+                .catch(e => {
+                  vbus.$emit('envelope', e.response.data)
+                })
 
-              Turbolinks.visit(location.toString())
-            })
-            .catch(e => {
-              vbus.$emit('envelope', e.response.data)
-              setTimeout(function() {
-                Turbolinks.visit(location.toString())
-              }, 3000)
-            })
-
-          }
-        })
+            }
+          })
 
       }
     }
 
   }
 </script>
-
-<style scoped>
-
-</style>

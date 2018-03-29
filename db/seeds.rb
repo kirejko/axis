@@ -52,7 +52,7 @@ ActiveRecord::Base.transaction do
 
     trial_at = Faker::Date.between([*1..5].sample.years.ago, Date.today)
 
-    profile  = {
+    profile = {
       first_name: fl_name[0],
       last_name:  fl_name[1],
       gender:     Profile::GENDERS.values[rand(Profile::GENDERS.values.size)],
@@ -74,5 +74,18 @@ ActiveRecord::Base.transaction do
     user.create_profile(profile)
 
     puts "-> User account '#{user.email}' created"
+  end
+
+  # 15 fake articles
+  user = User.first
+
+  15.times do
+    article = Article.create(
+      title: Faker::Book.title,
+      body:  Faker::Lorem.paragraphs.join("\n"),
+      user:  user
+    )
+
+    puts "-> Article '#{article.title}' created"
   end
 end

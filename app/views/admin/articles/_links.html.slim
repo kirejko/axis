@@ -1,0 +1,28 @@
+.row.page-titles
+  / .col-md-5.col-8.align-self-center
+  /   h3.text-themecolor.m-b-0.m-t-0
+  /     - if %w(new create).include?(action_name)
+  /       | Register person
+  /     - elsif %w(edit update).include?(action_name)
+  /       | Update person
+  /     - elsif %w(show).include?(action_name) && user.present?
+  /       /| View profile for&nbsp;
+  /       = "#{user.profile.first_name}'s profile"
+  /     - else
+  /       | List users
+  /   ol.breadcrumb
+  /     li.breadcrumb-item
+  /       a.link href=admin_root_path  Home
+  /     li.breadcrumb-item
+  /       = link_to_if(%w(new create edit update show).include?(action_name), 'Manage users', admin_users_path, class: 'link')
+  /     - if %w(new create).include?(action_name)
+  /       li.breadcrumb-item New
+  /     - elsif %w(show).include?(action_name)
+  /       li.breadcrumb-item View
+  /     - elsif %w(edit update).include?(action_name)
+  /       li.breadcrumb-item Edit
+
+  - if action_name === 'index'
+    .right-side-toggle
+      a.btn-fab.waves-effect.waves-light.btn-primary.btn.btn-sm.btn-circle.text-white[id="fab_button" href=new_admin_article_path]
+        i.fas.fa-plus

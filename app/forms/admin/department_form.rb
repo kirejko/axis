@@ -10,7 +10,7 @@ module Admin
 
     validates :name, presence: true
     validates :name, length: { in: 4..22 }, if: -> { name.present? }
-    
+
     validates :description, presence: true
     validates :description, length: { in: 10..255 }, if: -> { description.present? }
 
