@@ -41,7 +41,7 @@ module Admin
     end
 
     def destroy
-      # @article.destroy!
+      @article.destroy!
       render json: { message: "Article has been deleted.", status: :deleted }
     end
 
