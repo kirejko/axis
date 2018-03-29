@@ -6,7 +6,7 @@ class Profile < ApplicationRecord
   GENDERS = { male: 0, female: 1 }.freeze
   enum gender: GENDERS
 
-  # Ralations
+  # Relations
   belongs_to :user, touch: true
 
   # Default values

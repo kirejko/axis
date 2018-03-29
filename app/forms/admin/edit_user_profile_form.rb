@@ -26,12 +26,22 @@ module Admin
     validates :birthday,      presence: true
     validates :remote_worker, presence: true
     validates :remote_hourly, presence: true
-    validates :trial_at,      presence: true, timeliness: { type: :date }
-    validates :hired_at,      presence: true, timeliness: { type: :date }
-    validates :fired_at,      timeliness: { type: :date }
+    validates :trial_at,      presence: true
+    validates :hired_at,      presence: true
+    validates :fired_at,
 
     def self.model_name
       ActiveModel::Name.new(self, nil, 'User')
+    end
+
+    def initialize(user: nil, attributes: {})
+      # @user = user
+    end
+
+    def update
+      ActiveRecord::Base.transaction do
+        #
+      end
     end
 
   end

@@ -1,0 +1,11 @@
+- if form.errors.any? && Rails.env.development?
+  .col-md-12
+    .ribbon-vwrapper.card
+      .ribbon.ribbon-danger.ribbon-vertical-l
+        i.fas.fa-exclamation-triangle
+      .ribbon-content
+        ul.list-icons.m-l-5
+          - form.errors.each do |field, error|
+            li
+              i.ti-angle-right
+              = "#{field.to_s.titleize} #{error}"
