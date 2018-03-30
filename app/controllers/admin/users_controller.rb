@@ -25,11 +25,16 @@ module Admin
     end
 
     def edit
-      @form = Admin::EditUserProfileForm.new(user: @user)
+      @form = Admin::EditUserProfileForm.new(@user)
     end
 
     def update
-      @form = Admin::EditUserProfileForm.new(user: current_user, attributes: update_user_params)
+      @form = Admin::EditUserProfileForm.new(@user, update_user_params)
+      if @form.update
+        redirect_to admin_users_url, notice: "User has been updated"
+      else
+        render :index
+      end
     end
 
     def destroy

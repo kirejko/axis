@@ -2,6 +2,7 @@
 
 = bootstrap_form_for @form,
         url: admin_user_path,
+        method: :patch,
         html: { class: 'form-material m-t-10 row', multipart: true } do |f|
 
   = render partial: 'admin/partials/form_errors',

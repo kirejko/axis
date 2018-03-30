@@ -1,9 +1,12 @@
-== render partial: 'admin/users/links'
+= render 'links'
 
-= bootstrap_form_for @form, url: admin_users_path, html: { class: 'form-material m-t-10 row', multipart: true } do |f|
+= bootstrap_form_for @form,
+        url: admin_users_path,
+        html: { class: 'form-material m-t-10 row', multipart: true } do |f|
 
   = render partial: 'admin/partials/form_errors',
           locals: { form: @form, f: f }
+
   = render partial: 'form',
           locals: { form: @form, f: f }
 

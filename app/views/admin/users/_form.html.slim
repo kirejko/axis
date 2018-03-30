@@ -26,16 +26,15 @@
               autocomplete: 'off',
               placeholder: '* Corporate E-mail',
               help: 'Must be in @amgrade.com domain'
-
       = f.password_field :password, hide_label: true,
               autocomplete: 'off',
-              required: true,
+              required: action_name === 'new',
               placeholder: '* Password',
               help: 'Must be at least 8 characters long'
 
       = f.password_field :password_confirmation, hide_label: true,
               autocomplete: 'off',
-              required: true,
+              required: action_name === 'new',
               placeholder: '* Confirm password',
               help: 'Must match password field'
 
@@ -139,6 +138,7 @@
 
       = f.text_field :birthday, hide_label: true,
               autocomplete: 'off',
+              required: true,
               class: 'user-birth-datepicker',
               placeholder: '* Birthday',
               help: 'Well ... date of birth?'
