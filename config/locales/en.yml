@@ -63,3 +63,7 @@ en:
       messages:
         create:
           success: "User has been created"
+        update:
+          success: "User has been updated"
+        delete:
+          success: "User has been delete"

@@ -41,7 +41,13 @@ module Admin
 
     def persist!
       ActiveRecord::Base.transaction do
-        user = User.create!(email: email, password: password, avatar: avatar)
+        user = User.create!(
+          email:      email,
+          password:   password,
+          avatar:     avatar,
+          department: department
+        )
+
         user.create_profile(
           first_name:    first_name,
           last_name:     last_name,

@@ -4,8 +4,6 @@ module Admin
   # User related functionality
   class UsersController < AdminController
     before_action :set_user, only: %i[edit update destroy]
-    before_action :authorize_create?, only: %i[new create]
-    before_action :authorize_update?, only: %i[edit update]
 
     def index
       @users = User.includes(:profile).ordered.page(params[:page]).decorate
@@ -16,6 +14,8 @@ module Admin
     end
 
     def create
+      authorize User, :create?
+
       @form = Admin::UserRegistrationForm.new(create_user_params)
       if @form.save
         redirect_to admin_users_url, notice: t('admin.user.messages.create.success')
@@ -29,19 +29,21 @@ module Admin
     end
 
     def update
+      authorize @user, :update?
+
       @form = Admin::EditUserProfileForm.new(@user, update_user_params)
       if @form.update
-        redirect_to admin_users_url, notice: "User has been updated"
+        redirect_to admin_users_url, notice: t('admin.user.messages.update.success')
       else
         render :index
       end
     end
 
     def destroy
-      authorize_action? :destroy?
+      authorize @user, :destroy?
 
       @user.destroy!
-      render json: { message: "User has been deleted.", status: :deleted }
+      render json: { message: t('admin.user.messages.delete.success'), status: :deleted }
     end
 
     private
@@ -70,18 +72,6 @@ module Admin
         gmail skype phone1 phone2
         gender birthday notes
       ])
-    end
-
-    def authorize_create?
-      authorize_action? :create?
-    end
-
-    def authorize_update?
-      authorize_action? :update?
-    end
-
-    def authorize_action?(action)
-      authorize User, action
     end
 
   end
