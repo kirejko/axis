@@ -1,0 +1,15 @@
+.row.page-titles
+  .col-md-5.col-8.align-self-center
+    h3.text-themecolor.m-b-0.m-t-0
+      - if %w(show).include?(action_name) && @article.present?
+        /| View profile for&nbsp;
+        = @article.title
+      - else
+        | Knowledge Base
+    ol.breadcrumb
+      li.breadcrumb-item
+        a.link href=root_path Home
+      li.breadcrumb-item
+        a.link href=articles_path Articles
+      - if %w(show).include?(action_name)
+        li.breadcrumb-item = @article.title

@@ -1,0 +1,10 @@
+.col-lg-6.col-md-12.col-sm-12.col-xs-12
+  .card
+    .card-header
+      .h4
+        = article.title
+      .card-cations
+    .card-body
+      p.card-text
+        == article.parsed_body.truncate(200)
+      = link_to "Read...", article

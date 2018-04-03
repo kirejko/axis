@@ -2,7 +2,8 @@
 
 .row
   - @articles.each do |article|
-    = render partial: 'preview', locals: { article: article }
+    = render partial: 'preview', locals: {article: article}
+
 .row
   .col-md-12
     = paginate @articles
