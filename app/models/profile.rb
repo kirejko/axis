@@ -21,7 +21,7 @@ class Profile < ApplicationRecord
 
   # Virtual attributes
   def full_name=(name)
-    names = name.split(' ', 2)
+    names           = name.split(' ', 2)
     self.first_name = names.first
     self.last_name  = names.last
   end

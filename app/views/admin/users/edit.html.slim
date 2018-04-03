@@ -10,6 +10,32 @@
 
   = render partial: 'form', locals: { form: @form, f: f }
 
+  .col-md-4.col-xs-12
+    .ribbon-wrapper.card
+      .ribbon.ribbon-default
+        | Hire details
+      .ribbon-content
+        small
+          code.text-info Trial at, Hired at, Fired at
+
+          = f.text_field :trial_at, hide_label: true,
+                  autocomplete: 'off',
+                  class: 'user-trial-datepicker',
+                  placeholder: '* Trial at',
+                  help: 'Trial period start at ...'
+
+          = f.text_field :hired_at, hide_label: true,
+                  autocomplete: 'off',
+                  class: 'user-hired-datepicker',
+                  placeholder: '* Hired at',
+                  help: 'User was hired at ...'
+
+          = f.text_field :fired_at, hide_label: true,
+                  autocomplete: 'off',
+                  class: 'user-fired-datepicker',
+                  placeholder: '* Fired at',
+                  help: 'User was fired at ...'
+
   .col-md-12.col-xs-12
     = f.button :submit, class: 'btn waves-effect waves-light btn-block btn-info' do
       | Update profile

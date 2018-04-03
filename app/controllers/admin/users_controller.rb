@@ -35,7 +35,7 @@ module Admin
       if @form.update
         redirect_to admin_users_url, notice: t('admin.user.messages.update.success')
       else
-        render :index
+        render :edit
       end
     end
 
@@ -68,7 +68,7 @@ module Admin
         avatar email password password_confirmation
         first_name middle_name last_name
         position department remote_worker remote_hourly
-        trial_at hired_at
+        trial_at hired_at fired_at
         gmail skype phone1 phone2
         gender birthday notes
       ])

@@ -10,7 +10,7 @@ module Admin
       :first_name, :last_name, :middle_name,
       :position, :department, :remote_worker, :remote_hourly,
       :gmail, :skype, :phone1, :phone2,
-      :gender, :birthday, :notes,
+      :gender, :birthday, :notes
     )
 
     validates :avatar, presence: true
@@ -23,7 +23,7 @@ module Admin
     validates :department, exists: true, allow_nil: true
     validates :skype, presence: true
     validates :phone1, presence: true
-    validates :birthday, presence: true, birthday: true
+    validates :birthday, presence: true, birthday: true, if: -> { birthday.present? }
     validates :remote_worker, presence: true
     validates :remote_hourly, presence: true
 

@@ -15,6 +15,9 @@ class User < ApplicationRecord
   belongs_to :department, optional: true, counter_cache: true
   has_many :articles
 
+  # Nested attributes
+  accepts_nested_attributes_for :profile, update_only: true
+
   # Default values
   default_value_for :role, ROLES[:user]
 

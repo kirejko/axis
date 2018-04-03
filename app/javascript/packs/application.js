@@ -9,6 +9,7 @@
 
 window.$ = window.jQuery = require('jquery')
 window.moment = require('moment')
+window._ = require('lodash')
 require('jquery-toast-plugin')
 require('bootstrap')
 
