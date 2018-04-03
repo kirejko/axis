@@ -1,11 +1,4 @@
-= bootstrap_form_for @form,
-        url: url,
-        method: method.to_s,
-        html: { class: 'form-material m-t-10 row', multipart: true } do |f|
-
-  = render 'admin/partials/form_errors',
-          locals: { form: @form, f: f }
-
+.col-md-12
   = f.text_field :title,
           hide_label: true,
           wrapper: { class: 'm-t-25' },
@@ -13,14 +6,11 @@
           required: true,
           placeholder: 'Title'
 
+.col-md-12
   = f.text_area :body,
           hide_label: true,
           wrapper: { class: 'm-b-15' },
           autocomplete: 'off',
-          rows: 4,
+          rows: 10,
           required: true,
           placeholder: 'Body'
-
-  .col-md-12.col-xs-12
-    = f.button :submit, class: 'btn waves-effect waves-light btn-block btn-info' do
-      | Create Article

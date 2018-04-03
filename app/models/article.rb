@@ -1,3 +1,5 @@
+require 'redcarpet'
+
 # User model
 class Article < ApplicationRecord
   # Relations
@@ -5,4 +7,28 @@ class Article < ApplicationRecord
 
   # Pagination
   paginates_per 5
+
+  def parsed_body
+    markdown.render(body)
+  end
+
+  private
+
+  def markdown
+    Redcarpet::Markdown.new(
+      Redcarpet::Render::HTML,
+      markdown_settings
+    )
+  end
+
+  def markdown_settings
+    {
+      autolink:      true,
+      tables:        true,
+      strikethrough: true,
+      underline:     true,
+      highlight:     true,
+      quote:         true
+    }
+  end
 end

@@ -1,3 +1,16 @@
 = render 'links'
 
-= render 'form', form: @form, method: :patch, url: admin_article_path
+= bootstrap_form_for @form,
+        url: admin_article_path,
+        method: :patch,
+        html: { class: 'form-material m-t-10 row', multipart: true } do |f|
+
+  = render partial: 'admin/partials/form_errors',
+          locals: { form: @form, f: f }
+
+  = render partial: 'form',
+          locals: { form: @form, f: f }
+
+  .col-md-12.col-xs-12
+    = f.button :submit, class: 'btn waves-effect waves-light btn-block btn-info' do
+      | Save Article
