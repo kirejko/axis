@@ -1,12 +1,12 @@
 require 'redcarpet'
 
-# User model
+# Article model
 class Article < ApplicationRecord
   # Relations
   belongs_to :user
 
   # Pagination
-  paginates_per 5
+  paginates_per 6
 
   def parsed_body
     markdown.render(body)
