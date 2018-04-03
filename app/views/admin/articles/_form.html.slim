@@ -1,16 +1,20 @@
 .col-md-12
-  = f.text_field :title,
-          hide_label: true,
-          wrapper: { class: 'm-t-25' },
-          autocomplete: 'off',
-          required: true,
-          placeholder: 'Title'
-
-.col-md-12
-  = f.text_area :body,
-          hide_label: true,
-          wrapper: { class: 'm-b-15' },
-          autocomplete: 'off',
-          rows: 10,
-          required: true,
-          placeholder: 'Body'
+  .card
+    .card-header
+      = f.text_field :title,
+              hide_label: true,
+              wrapper: { class: 'm-t-25' },
+              autocomplete: 'off',
+              required: true,
+              placeholder: 'Title'
+    .card-body
+      = f.text_area :body,
+              hide_label: true,
+              wrapper: { class: 'm-b-15' },
+              autocomplete: 'off',
+              rows: 10,
+              required: true,
+              placeholder: 'Body'
+    .card-footer.text-muted
+      small
+        | #heading, ~~strike~~, *italic*, **bold**, _underline_, ==highlighted==, `code`

@@ -23,12 +23,14 @@ class Article < ApplicationRecord
 
   def markdown_settings
     {
-      autolink:      true,
-      tables:        true,
-      strikethrough: true,
-      underline:     true,
-      highlight:     true,
-      quote:         true
+      autolink:                     true,
+      tables:                       true,
+      strikethrough:                true,
+      underline:                    true,
+      highlight:                    true,
+      quote:                        true,
+      fenced_code_blocks:           true,
+      disable_indented_code_blocks: true
     }
   end
 end
