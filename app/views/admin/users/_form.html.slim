@@ -7,7 +7,7 @@
         code.text-info Allows JPG(JPEG) and PNG. Max allowed size is 2Mb.
       = f.file_field :avatar, hide_label: true,
               class: 'dropify',
-              data: { height: 224, 'default-file': form.avatar.url },
+              data: { height: 224, 'default-file': form.avatar.url, 'show-remove': false },
               wrapper: { class: 'm-t-20' }
 
 .col-md-4.col-xs-12
