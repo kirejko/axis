@@ -3,11 +3,12 @@ module Admin
   class ArticleForm
     include ActiveModel::Model
 
-    attr_accessor :title, :body
+    attr_accessor :title, :body, :attachments
     attr_reader :article, :user
 
     validates :title, presence: true, length: { in: 3..255 }
     validates :body, presence: true, length: { minimum: 10 }
+    validates :attachments, presence: false
 
     def self.model_name
       ActiveModel::Name.new(self, nil, 'Article')
@@ -42,15 +43,17 @@ module Admin
 
     def article_attributes
       {
-        title: article.title,
-        body:  article.body
+        title:       article.title,
+        body:        article.body,
+        attachments: article.attachments
       }
     end
 
     def article_permitted_params
       {
-        title: title,
-        body:  body
+        title:       title,
+        body:        body,
+        attachments: attachments
       }
     end
 

@@ -2,6 +2,9 @@ require 'redcarpet'
 
 # Article model
 class Article < ApplicationRecord
+  mount_uploaders :attachments, AttachmentUploader
+  serialize :attachments, JSON
+
   # Relations
   belongs_to :user
 

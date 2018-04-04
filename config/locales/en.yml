@@ -67,3 +67,11 @@ en:
           success: "User has been updated"
         delete:
           success: "User has been delete"
+    article:
+      messages:
+        create:
+          success: "Article has been created"
+        update:
+          success: "Article has been updated"
+        delete:
+          success: "Article has been delete"

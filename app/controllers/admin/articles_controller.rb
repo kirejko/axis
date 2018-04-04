@@ -21,7 +21,7 @@ module Admin
       )
 
       if @form.save
-        redirect_to admin_articles_url, notice: "Article has been created."
+        redirect_to admin_articles_url, notice: t('admin.article.messages.create.success')
       else
         render :new
       end
@@ -32,9 +32,13 @@ module Admin
     end
 
     def update
-      @form = Admin::ArticleForm.new(article: @article, attributes: article_params)
+      @form = Admin::ArticleForm.new(
+        article:    @article,
+        attributes: article_params
+      )
+
       if @form.update
-        redirect_to admin_articles_url, notice: "Article has been updated."
+        redirect_to admin_articles_url, notice: t('admin.article.messages.update.success')
       else
         render :edit
       end
@@ -42,7 +46,7 @@ module Admin
 
     def destroy
       @article.destroy!
-      render json: { message: "Article has been deleted.", status: :deleted }
+      render json: { message: t('admin.article.messages.delete.success'), status: :deleted }
     end
 
     private
@@ -52,7 +56,7 @@ module Admin
     end
 
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, attachments: [])
     end
 
     def authorize_create?
