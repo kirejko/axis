@@ -1,8 +1,14 @@
 = render 'links'
 
 .col-md-12
-  .card.card-body == @article.parsed_body
-
-  ul.list-group
-    - @article.attachments.each do |attachment|
-      li.list-group-item = link_to attachment.file.filename, attachment.url
+  .card
+    .card-body
+      .card-text
+        == @article.parsed_body
+    hr
+    .card-body
+      h4.card-title
+        | Attachments
+      .list-group.list-group-flush
+        - @article.attachments.each do |attachment|
+          = link_to attachment.file.filename, attachment.url, { class: 'list-group-item' }
