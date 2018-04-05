@@ -59,15 +59,11 @@ module Admin
     end
 
     def authorize_create?
-      authorize_action? :create?
+      authorize Article, :create?
     end
 
     def authorize_update?
-      authorize_action? :update?
-    end
-
-    def authorize_action?(action)
-      authorize Article, action
+      authorize @article, :update?
     end
   end
 end

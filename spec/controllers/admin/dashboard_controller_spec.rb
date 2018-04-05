@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ::Admin::DashboardController, type: :controller do
+RSpec.describe Admin::DashboardController, type: :controller do
 
   describe "GET #index" do
     it "returns http redirect if non-auth" do
@@ -8,22 +8,19 @@ RSpec.describe ::Admin::DashboardController, type: :controller do
       expect(response).to have_http_status(:redirect)
     end
 
-    context "with render views" do
-      render_views
+    it "returns http not found if non-admin user" do
+      bypass_rescue
+      sign_in build(:user)
 
-      it "returns http not found if non-admin user" do
-        sign_in build(:user)
-
-        get :index
-        expect(response).to have_http_status(:success)
-        expect(response.body).to match '404 - Not Found'
-      end
+      expect { get :index }.to raise_error(ActionController::RoutingError)
+      expect(response).to have_http_status(:success)
     end
 
     it "returns http success for admins" do
+      RSpec::Expectations.configuration.on_potential_false_positives = :nothing
       sign_in build(:admin)
 
-      get :index
+      expect { get :index }.not_to raise_error(ActionController::RoutingError)
       expect(response).to have_http_status(:success)
     end
   end
