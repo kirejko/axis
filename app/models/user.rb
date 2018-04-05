@@ -32,14 +32,18 @@ class User < ApplicationRecord
   validates :email, uniqueness: { case_sensitive: false }, email: true, on: :create
 
   # Validate avatar when creating user
-  validates_integrity_of  :avatar, on: :create
+  validates_integrity_of :avatar, on: :create
   validates_processing_of :avatar, on: :create
   # Validate avatar when updating user
-  validates_integrity_of  :avatar, on: :update, if: -> { avatar.present? }
+  validates_integrity_of :avatar, on: :update, if: -> { avatar.present? }
   validates_processing_of :avatar, on: :update, if: -> { avatar.present? }
 
   # Pagination
   paginates_per 18
+
+  def admin?
+    %i[admin recruiter director].include?(role.to_sym)
+  end
 
   private
 

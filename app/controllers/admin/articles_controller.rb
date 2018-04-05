@@ -1,7 +1,6 @@
 module Admin
   # ArticlesController
   class ArticlesController < ApplicationController
-    before_action :authenticate_user!
     before_action :set_article, only: %i[edit update destroy]
     before_action :authorize_create?, only: %i[new create]
     before_action :authorize_update?, only: %i[edit update]
