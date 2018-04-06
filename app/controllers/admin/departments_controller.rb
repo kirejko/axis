@@ -12,14 +12,14 @@ module Admin
 
     # get '/admin/departments/new'
     def new
-      authorize Department.new, :create?
+      authorize Department, :create?
 
       @form = Admin::DepartmentForm.new(department: Department.new)
     end
 
     # post '/admin/departments'
     def create
-      authorize Department.new, :create?
+      authorize Department, :create?
 
       @form = Admin::DepartmentForm.new(attributes: request_params)
       if @form.save
