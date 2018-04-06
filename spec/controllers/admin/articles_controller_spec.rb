@@ -107,6 +107,16 @@ RSpec.describe Admin::ArticlesController, type: :controller do
         expect(response).to have_http_status :success
       end
     end
+
+    describe 'DELETE #destroy' do
+      it 'article delete successful' do
+        sign_in build(:admin)
+
+        patch :destroy, params: { id: @article.id }
+        expect(response).to have_http_status :success
+        expect(response.content_type).to eq "application/json"
+      end
+    end
   end
 
 end
