@@ -23,7 +23,15 @@ RSpec.describe Admin::ArticlesController, type: :controller do
     it 'article create correctly' do
       sign_in build(:admin)
 
-      post :create, make
+      post :create, params: { article: attributes_for(:article) }
+      expect(response).to have_http_status :redirect
+    end
+
+    it 'article create validation fail' do
+      sign_in build(:admin)
+
+      post :create, params: { article: attributes_for(:invalid_article) }
+      expect(response).to have_http_status :success
     end
 
     it 'rise pundit exception for non-admin users' do
