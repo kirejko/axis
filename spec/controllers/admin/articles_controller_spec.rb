@@ -10,7 +10,7 @@ RSpec.describe Admin::ArticlesController, type: :controller do
       expect(response).to have_http_status :success
     end
 
-    it 'rise pundit exception for non-admin users' do
+    it 'rise exception for non-admin users' do
       bypass_rescue
 
       sign_in build(:user)
@@ -44,13 +44,11 @@ RSpec.describe Admin::ArticlesController, type: :controller do
   end
 
   context 'with already created article' do
-    before do
-      @article = create(:article)
-    end
+    before { @article = create(:article) }
 
     describe 'GET #edit' do
       it 'article edit correctly' do
-        sign_in build(:admin)
+        sign_in build(:top_manager)
 
         get :edit, params: {
           id:      @article.id,
@@ -75,7 +73,7 @@ RSpec.describe Admin::ArticlesController, type: :controller do
 
     describe 'PATCH #update' do
       it 'article update correctly' do
-        sign_in build(:admin)
+        sign_in build(:top_manager)
 
         patch :update, params: {
           id:      @article.id,
@@ -85,7 +83,7 @@ RSpec.describe Admin::ArticlesController, type: :controller do
       end
 
       it 'article update validation fail' do
-        sign_in build(:admin)
+        sign_in build(:top_manager)
 
         patch :update, params: {
           id:      @article.id,
@@ -110,7 +108,7 @@ RSpec.describe Admin::ArticlesController, type: :controller do
 
     describe 'DELETE #destroy' do
       it 'article delete successful' do
-        sign_in build(:admin)
+        sign_in build(:top_manager)
 
         patch :destroy, params: { id: @article.id }
         expect(response).to have_http_status :success

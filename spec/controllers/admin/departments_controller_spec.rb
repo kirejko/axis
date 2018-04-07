@@ -10,11 +10,19 @@ RSpec.describe Admin::DepartmentsController, type: :controller do
       expect(response).to have_http_status :success
     end
 
-    it 'rise pundit exception for non-admin users' do
+    it 'rise exception for non-admin users' do
       bypass_rescue
 
       sign_in build(:user)
       expect { get :new }.to raise_error(ActionController::RoutingError)
+      expect(response).to have_http_status :success
+    end
+
+    it 'rise pundit exception for recruiter' do
+      bypass_rescue
+
+      sign_in build(:recruiter)
+      expect { get :new }.to raise_error(Pundit::NotAuthorizedError)
       expect(response).to have_http_status :success
     end
   end
@@ -31,7 +39,24 @@ RSpec.describe Admin::DepartmentsController, type: :controller do
       bypass_rescue
 
       sign_in build(:user)
-      expect { post :create }.to raise_error(ActionController::RoutingError)
+      expect do
+        post :create, params: {
+          department: attributes_for(:department)
+        }
+      end.to raise_error(ActionController::RoutingError)
+      expect(response).to have_http_status :success
+    end
+
+
+    it 'rise pundit exception for recruiter' do
+      bypass_rescue
+
+      sign_in build(:recruiter)
+      expect do
+        post :create, params: {
+          department: attributes_for(:department)
+        }
+      end.to raise_error(Pundit::NotAuthorizedError)
       expect(response).to have_http_status :success
     end
   end
@@ -52,7 +77,7 @@ RSpec.describe Admin::DepartmentsController, type: :controller do
         expect(response).to have_http_status :success
       end
 
-      it 'rise pundit exception for non-admin users' do
+      it 'rise exception for non-admin users' do
         bypass_rescue
         sign_in build(:user)
 
@@ -62,6 +87,19 @@ RSpec.describe Admin::DepartmentsController, type: :controller do
             department: attributes_for(:department)
           }
         end.to raise_error(ActionController::RoutingError)
+        expect(response).to have_http_status :success
+      end
+
+      it 'rise pundit exception for recruiter' do
+        bypass_rescue
+
+        sign_in build(:recruiter)
+        expect do
+          get :edit, params: {
+            id:         @department.id,
+            department: attributes_for(:department)
+          }
+        end.to raise_error(Pundit::NotAuthorizedError)
         expect(response).to have_http_status :success
       end
     end
@@ -81,13 +119,13 @@ RSpec.describe Admin::DepartmentsController, type: :controller do
         sign_in build(:admin)
 
         patch :update, params: {
-          id:      @department.id,
+          id:         @department.id,
           department: attributes_for(:invalid_department)
         }
         expect(response).to have_http_status :success
       end
 
-      it 'rise pundit exception for non-admin users' do
+      it 'rise exception for non-admin users' do
         bypass_rescue
         sign_in build(:user)
 
@@ -97,6 +135,19 @@ RSpec.describe Admin::DepartmentsController, type: :controller do
             department: attributes_for(:department)
           }
         end.to raise_error(ActionController::RoutingError)
+        expect(response).to have_http_status :success
+      end
+
+      it 'rise pundit exception for recruiter' do
+        bypass_rescue
+
+        sign_in build(:recruiter)
+        expect do
+          patch :update, params: {
+            id:         @department.id,
+            department: attributes_for(:department)
+          }
+        end.to raise_error(Pundit::NotAuthorizedError)
         expect(response).to have_http_status :success
       end
     end
@@ -109,6 +160,22 @@ RSpec.describe Admin::DepartmentsController, type: :controller do
         expect(response).to have_http_status :success
         expect(response.content_type).to eq "application/json"
       end
+    end
+
+    it 'rise pundit exception for recruiter' do
+      bypass_rescue
+
+      sign_in build(:recruiter)
+      expect { patch :destroy, params: { id: @department.id } }.to raise_error(Pundit::NotAuthorizedError)
+      expect(response).to have_http_status :success
+    end
+
+    it 'rise exception for non-admin users' do
+      bypass_rescue
+      sign_in build(:user)
+
+      expect { patch :destroy, params: { id: @department.id } }.to raise_error(ActionController::RoutingError)
+      expect(response).to have_http_status :success
     end
   end
 

@@ -15,6 +15,10 @@ FactoryBot.define do
     role { User::ROLES[:admin] }
   end
 
+  factory :recruiter, parent: :user do
+    role { User::ROLES[:recruiter] }
+  end
+
   factory :top_manager, parent: :user do
     role { User::ROLES[%i[director recruiter].sample] }
   end
