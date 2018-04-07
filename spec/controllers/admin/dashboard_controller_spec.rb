@@ -16,9 +16,9 @@ RSpec.describe Admin::DashboardController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    it "returns http success for admins" do
+    it "returns http success for top managers" do
       RSpec::Expectations.configuration.on_potential_false_positives = :nothing
-      sign_in build(:admin)
+      sign_in build(:top_manager)
 
       expect { get :index }.not_to raise_error(ActionController::RoutingError)
       expect(response).to have_http_status(:success)

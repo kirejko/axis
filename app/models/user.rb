@@ -42,6 +42,10 @@ class User < ApplicationRecord
   paginates_per 18
 
   def admin?
+    :admin.equal? role.to_sym
+  end
+
+  def top_manager?
     %i[admin recruiter director].include?(role.to_sym)
   end
 

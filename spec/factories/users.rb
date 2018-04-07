@@ -11,13 +11,11 @@ FactoryBot.define do
     end
   end
 
-  factory :admin, class: User do
-    email { Faker::Internet.safe_email }
-    password { 'password' }
+  factory :admin, parent: :user do
     role { User::ROLES[:admin] }
+  end
 
-    after :build do |user|
-      create :profile, user: user
-    end
+  factory :top_manager, parent: :user do
+    role { User::ROLES[%i[director recruiter].sample] }
   end
 end
