@@ -14,7 +14,7 @@ RSpec.describe Admin::ArticlesController, type: :controller do
       bypass_rescue
 
       sign_in build(:user)
-      expect { get :new }.to raise_error(Pundit::NotAuthorizedError)
+      expect { get :new }.to raise_error(ActionController::RoutingError)
       expect(response).to have_http_status :success
     end
   end
@@ -38,7 +38,7 @@ RSpec.describe Admin::ArticlesController, type: :controller do
       bypass_rescue
 
       sign_in build(:user)
-      expect { post :create }.to raise_error(Pundit::NotAuthorizedError)
+      expect { post :create }.to raise_error(ActionController::RoutingError)
       expect(response).to have_http_status :success
     end
   end
@@ -68,7 +68,7 @@ RSpec.describe Admin::ArticlesController, type: :controller do
             id:      @article.id,
             article: attributes_for(:article)
           }
-        end.to raise_error(Pundit::NotAuthorizedError)
+        end.to raise_error(ActionController::RoutingError)
         expect(response).to have_http_status :success
       end
     end
@@ -103,7 +103,7 @@ RSpec.describe Admin::ArticlesController, type: :controller do
             id:      @article.id,
             article: attributes_for(:article)
           }
-        end.to raise_error(Pundit::NotAuthorizedError)
+        end.to raise_error(ActionController::RoutingError)
         expect(response).to have_http_status :success
       end
     end
