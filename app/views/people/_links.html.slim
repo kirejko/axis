@@ -1,9 +1,9 @@
 .row.page-titles
   .col-md-5.col-8.align-self-center
     h3.text-themecolor.m-b-0.m-t-0
-      - if %w(show).include?(action_name) && person.present?
+      - if %w(show).include?(action_name) && @person.present?
         /| View profile for&nbsp;
-        = "#{person.profile.first_name}'s profile"
+        = "#{@person.profile.first_name}'s profile"
       - else
         | People directory
     ol.breadcrumb

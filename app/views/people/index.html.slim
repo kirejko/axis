@@ -1,4 +1,4 @@
-= render partial: 'people/links'
+= render 'links'
 .row
   - @people.each do |person|
     = render partial: 'people/card', locals: { person: person }
@@ -6,4 +6,3 @@
 .row
   .col-md-12
     = paginate @people
-

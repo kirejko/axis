@@ -44,7 +44,7 @@ module Admin
 
     def user_flat_parameters
       {
-        avatar:        user.avatar,
+        avatar:        user.avatar_url,
         email:         user.email,
         password:      user.password,
         department:    user.department_id,

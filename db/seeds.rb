@@ -44,7 +44,7 @@ puts '-' * 60
 return unless Rails.env.development?
 
 ActiveRecord::Base.transaction do
-  # 25 ramdom fake users
+  # 25 random fake users
   position = ['Laravel/Rails Developer', 'React Developer', 'HTML Coder', 'iOS Developer', 'Android Developer', 'Recruiter']
   25.times do
     fl_name  = [Faker::Name.first_name, Faker::Name.first_name]

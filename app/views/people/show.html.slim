@@ -1,0 +1,90 @@
+= render 'links'
+
+.row
+  .col-md-4.col-xs-12
+    .ribbon-wrapper.card
+      .ribbon.ribbon-default
+        | Photo
+      .ribbon-content
+        = image_tag(@person.avatar, size: '350x300')
+
+  .col-md-4.col-xs-12
+    .ribbon-wrapper.card
+      .ribbon.ribbon-default
+        | Personal Info
+      .ribbon-content
+        .row
+          strong.col-md-5 Name:&nbsp;
+          .col-md-7.text-right
+            - if @person.profile.gender.eql? 'male'
+              i.fas.fa-mars.m-r-10
+            - else
+              i.fas.fa-venus.m-r-10
+            = @person.profile.full_name
+        .row
+          strong.col-md-5 Birthday:&nbsp;
+          .col-md-7.text-right
+            = @person.profile.birthday
+            | &nbsp;(#{pluralize(@person.profile.age, 'year')})
+        .row
+          strong.col-md-5 Remote Worker:&nbsp;
+          .col-md-7.text-center
+            - if @person.profile.remote_worker
+              i.fas.fa-check
+            - else
+              i.fas.fa-times
+        .row
+          strong.col-md-5 Remote Hourly:&nbsp;
+          .col-md-7.text-center
+            - if @person.profile.remote_hourly
+              i.fas.fa-check
+            - else
+              i.fas.fa-times
+        .row
+          strong.col-md-5 Position:&nbsp;
+          .col-md-7.text-right
+            = @person.profile.position
+        .row
+          strong.col-md-5 Notes:&nbsp;
+          .col-md-7.text-right
+            = @person.profile.notes
+
+  .col-md-4.col-xs-12
+    .ribbon-wrapper.card
+      .ribbon.ribbon-default
+        | Contacts
+      .ribbon-content
+        ul.list-unstyled
+          li
+            a.link href="mailto:#{@person.email}"
+              small
+                i.fas.fa-envelope.m-r-5
+                = @person.email
+          li
+            a.link href="mailto:#{@person.profile.gmail}"
+              small
+                i.fab.fa-google.m-r-5
+                = @person.profile.gmail
+        hr
+        a.link href="skype:#{@person.profile.skype}?call"
+          small
+            i.fab.fa-skype.m-r-5
+            = @person.profile.skype
+        hr
+        ul.list-unstyled
+          li
+            small
+              i.fas.fa-mobile-alt.m-r-5
+              = @person.profile.phone1
+          - unless @person.profile.phone2.blank?
+            li
+              small
+                i.fas.fa-phone.m-r-5
+                = @person.profile.phone2
+        - unless @person.profile.address.blank?
+          hr
+          ul.list-unstyled
+            li
+              small
+                i.fas.fa-address-card.m-r-5
+                = @person.profile.address

@@ -17,10 +17,8 @@
 
           .col-md-8.col-lg-9
             h3.box-title.m-b-0
-              /= link_to person.profile.full_name, person_path(person)
-              = person.profile.full_name
+              = link_to person.profile.full_name, person_path(person)
             a.link href="skype:#{person.profile.skype}?call"
               small
                 i.fab.fa-skype.m-r-5
                 = person.profile.skype
-

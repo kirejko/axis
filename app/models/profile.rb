@@ -30,6 +30,10 @@ class Profile < ApplicationRecord
     [last_name, first_name].compact.join(' ')
   end
 
+  def age
+    ((Time.now.to_f - birthday.to_time.to_f) / 1.year).floor
+  end
+
   private
 
   def downcase_gmail
