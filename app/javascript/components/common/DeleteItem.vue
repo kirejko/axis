@@ -5,19 +5,15 @@
 </template>
 
 <script>
-  import http from '../utils/http'
-  import vbus from '../utils/vbus'
-
-  import swal from 'sweetalert'
-
   import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
   import faTrashAlt from '@fortawesome/fontawesome-free-regular/faTrashAlt'
 
   export default {
-    name: 'delete-item',
-
     props: {
-      url: String
+      url: {
+        type: String,
+        required: true
+      }
     },
 
     components: {
@@ -39,22 +35,14 @@
           buttons: true,
           dangerMode: true,
         })
-          .then((willDelete) => {
+          .then(willDelete => {
             if (willDelete) {
-
-              http.delete(this.url)
-                .then(({data}) => {
-                  vbus.$emit('envelope', data)
-                })
-                .catch(e => {
-                  vbus.$emit('envelope', e.response.data)
-                })
-
+              this.$http.delete(this.url)
+                .then(({ data }) => VueBus.$emit('envelope', data))
+                .catch(e => VueBus.$emit('envelope', e.response.data))
             }
           })
-
       }
     }
-
   }
 </script>
