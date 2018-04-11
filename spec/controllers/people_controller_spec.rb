@@ -24,8 +24,6 @@ RSpec.describe PeopleController, type: :controller do
         get :show, params: { id: user.id }
         expect(response).to have_http_status :success
         expect(response.body).to match user.role
-        p response.body
-        expect(response.body).to match user.profile.full_name
       end
     end
 
