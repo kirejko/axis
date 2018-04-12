@@ -14,10 +14,10 @@ puts '=> Creating default departments'
   business_development:   'They would sell a breath to you, even when you can breath yourself',
   servers_administration: 'Well, when they play Warcraft all the day long, you can be sure everything is fine',
   rescruitment:           'HRs... they are merciless headhunters. But they bring smiles to all of us every day',
-  financial:              'Where is my paychek?! Better do not anger them, or your paycheck will go to /dev/null :)'
+  financial:              'Where is my paycheck?! Better do not anger them, or your paycheck will go to /dev/null :)'
 }.each_entry do |name, description|
   Department.create(name: name.to_s.titleize, description: description)
-  puts "-> Department '#{name}' created with descritpion '#{description}'"
+  puts "-> Department '#{name}' created with description '#{description}'"
 end
 
 # Clean-up users table
