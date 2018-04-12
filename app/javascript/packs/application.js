@@ -10,6 +10,7 @@ import '../boot'
 
 new Vue({
   el: '#app',
+
   created() {
     VueBus.$on('envelope', ({ message, status }) => {
       $.toast({

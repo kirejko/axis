@@ -23,7 +23,9 @@ module Admin
 
       @form = Admin::DepartmentForm.new(attributes: request_params)
       if @form.save
-        redirect_to admin_departments_url, notice: 'Department has been created'
+        redirect_to admin_departments_url, flush: {
+          success: 'Department has been created'
+        }
       else
         render :new
       end
@@ -42,7 +44,9 @@ module Admin
 
       @form = Admin::DepartmentForm.new(department: @department, attributes: request_params)
       if @form.update
-        redirect_to admin_departments_url, success: 'Department has been updated'
+        redirect_to admin_departments_url, flush: {
+          success: 'Department has been updated'
+        }
       else
         render :edit
       end
@@ -53,7 +57,7 @@ module Admin
       authorize @department, :destroy?
 
       @department.destroy
-      render json: { status: 'success', message: 'Department has been deleted' }.compact, status: 200
+      render json: { status: :success, message: 'Department has been deleted' }
     end
 
     private

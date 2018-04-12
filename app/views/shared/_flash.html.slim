@@ -1,14 +1,2 @@
-- flash.each do |type, message|
-
-  javascript:
-    $(function () {
-      $.toast({
-        heading: "#{type.titleize}",
-        text: "#{message}",
-        position: 'top-right',
-        loaderBg: '#ff6849',
-        icon: "#{type}",
-        hideAfter: 5000,
-        stack: 3
-      });
-    });
+- flash.each do |status, message|
+  flash[status="#{status}" message="#{message}"]

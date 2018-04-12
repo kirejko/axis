@@ -17,7 +17,7 @@ html
         == render partial: 'layouts/sidebar'
         .page-wrapper
           .container-fluid
-            // == render partial: 'shared/flash' unless flash.empty?
+            == render partial: 'shared/flash'
             == yield
 
           .footer.text-center.fixed-bottom

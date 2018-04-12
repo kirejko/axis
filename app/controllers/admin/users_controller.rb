@@ -18,7 +18,9 @@ module Admin
 
       @form = Admin::UserRegistrationForm.new(create_user_params)
       if @form.save
-        redirect_to admin_users_url, notice: t('admin.user.messages.create.success')
+        redirect_to admin_users_url, flash: {
+          success: t('admin.user.messages.create.success')
+        }
       else
         render :new
       end
@@ -33,7 +35,9 @@ module Admin
 
       @form = Admin::EditUserProfileForm.new(@user, update_user_params)
       if @form.update
-        redirect_to admin_users_url, notice: t('admin.user.messages.update.success')
+        redirect_to admin_users_url, flash: {
+          success: t('admin.user.messages.update.success')
+        }
       else
         render :edit
       end
@@ -43,7 +47,7 @@ module Admin
       authorize @user, :destroy?
 
       @user.destroy!
-      render json: { message: t('admin.user.messages.delete.success'), status: :deleted }
+      render json: { message: t('admin.user.messages.delete.success'), status: :success }
     end
 
     private

@@ -89,6 +89,8 @@ module Admin
       }
 
       attributes.merge(password: password) unless password.blank?
+
+      attributes
     end
 
     def update
