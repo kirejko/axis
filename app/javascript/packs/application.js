@@ -21,7 +21,7 @@ new Vue({
         hideAfter: 5000,
         stack: 3,
         afterHidden() {
-          window.location = location.toString()
+          window.location = location.toString().replace(/#/, '')
         },
       })
     })

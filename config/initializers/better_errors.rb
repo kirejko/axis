@@ -1,3 +1,5 @@
+return unless Rails.env.development?
+
 module BetterErrorsHugeInspectWarning
   def inspect_value(obj)
     inspected = obj.inspect

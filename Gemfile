@@ -70,7 +70,6 @@ gem 'default_value_for', '~> 3.0', '>= 3.0.5'
 gem 'redcarpet', '~> 3.4'
 
 group :development, :test do
-  gem 'better_errors', '~> 2.4'
   gem 'database_cleaner', '~> 1.6'
   gem 'factory_bot_rails', '~> 4.8'
   gem 'faker', '~> 1.8'
@@ -85,6 +84,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'better_errors', '~> 2.4'
   gem 'binding_of_caller', '~> 0.8.0'
   gem 'html2slim', '~> 0.2.0'
   gem 'listen', '>= 3.0.5', '< 3.2'

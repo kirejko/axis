@@ -7,7 +7,7 @@
     "@fortawesome/vue-fontawesome": "^0.0.22",
     "@rails/webpacker": "^3.2.2",
     "axios": "^0.18.0",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.1.0",
     "bootstrap-material-datetimepicker": "^2.7.3",
     "dropify": "^0.2.2",
     "jquery": "^3.3.1",
