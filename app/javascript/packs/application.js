@@ -6,11 +6,31 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-import App from 'boot'
+import '../boot'
 
-document.addEventListener('DOMContentLoaded', () => {
-  new Vue({
-    el: '#app',
-    render: h => h(App)
-  });
-})
+new Vue({
+  el: '#app',
+  created() {
+    VueBus.$on('envelope', ({ message, status }) => {
+      $.toast({
+        heading: _.upperFirst(status),
+        text: message,
+        position: 'top-right',
+        loaderBg: '#ff6849',
+        icon: status,
+        hideAfter: 5000,
+        stack: 3,
+        afterHidden() {
+          window.location = location.toString()
+        },
+      })
+    })
+  },
+
+  mounted() {
+    $('.preloader').fadeOut()
+
+    require('../helpers/theme')
+    require('../helpers/fab')
+  }
+});

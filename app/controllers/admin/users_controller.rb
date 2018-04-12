@@ -42,7 +42,7 @@ module Admin
     def destroy
       authorize @user, :destroy?
 
-      @user.destroy!
+      # @user.destroy!
       render json: { message: t('admin.user.messages.delete.success'), status: :deleted }
     end
 

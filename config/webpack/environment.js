@@ -1,6 +1,5 @@
 const { environment } = require('@rails/webpacker')
 const { ProvidePlugin } = require('webpack')
-const path = require('path')
 const vue = require('./loaders/vue')
 
 // Loaders
@@ -11,21 +10,21 @@ environment.config.merge({
   resolve: {
     alias: {
       vue: 'vue/dist/vue.esm.js',
-      utils: path.resolve(__dirname, 'app/javascript/utils')
     }
   },
 })
 
 // Plugins
 environment.plugins.prepend(
+  'Provide',
   new ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
     Vue: ['vue/dist/vue.esm.js', 'default'],
     _: 'lodash',
+    swal: 'sweetalert',
     moment: 'moment',
-    VueBus: 'utils/vbus',
-    swal: 'sweetalert'
+    'window.moment': 'moment',
   })
 )
 
