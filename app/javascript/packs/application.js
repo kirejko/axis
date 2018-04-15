@@ -34,4 +34,4 @@ new Vue({
     require('../helpers/theme')
     require('../helpers/fab')
   }
-});
+})

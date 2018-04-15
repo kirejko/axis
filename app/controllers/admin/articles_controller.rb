@@ -20,7 +20,7 @@ module Admin
       )
 
       if @form.save
-        redirect_to admin_articles_url, flush: {
+        redirect_to admin_articles_url, flash: {
           success: t('admin.article.messages.create.success')
         }
       else
@@ -39,7 +39,7 @@ module Admin
       )
 
       if @form.update
-        redirect_to admin_articles_url, flush: {
+        redirect_to admin_articles_url, flash: {
           success: t('admin.article.messages.update.success')
         }
       else
@@ -49,7 +49,7 @@ module Admin
 
     def destroy
       @article.destroy!
-      render json: { message: t('admin.article.messages.delete.success'), status: :sucess }
+      render json: { message: t('admin.article.messages.delete.success'), status: :success }
     end
 
     private

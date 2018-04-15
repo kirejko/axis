@@ -6,6 +6,8 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.7",
     "@fortawesome/vue-fontawesome": "^0.0.22",
     "@rails/webpacker": "^3.2.2",
+    "@vue/web-component-wrapper": "^1.2.0",
+    "@webcomponents/webcomponentsjs": "^1.2.0",
     "axios": "^0.18.0",
     "bootstrap": "^4.1.0",
     "bootstrap-material-datetimepicker": "^2.7.3",
