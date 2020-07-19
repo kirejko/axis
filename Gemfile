@@ -28,7 +28,7 @@ gem 'bootstrap_form',
     branch: 'master'
 
 # Pagination
-gem 'kaminari', '~> 1.1'
+gem 'kaminari', '~> 1.2'
 
 # Decorators
 gem 'draper', '~> 3.0'
