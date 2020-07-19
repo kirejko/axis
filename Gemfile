@@ -15,7 +15,7 @@ gem 'figaro', '~> 1.1'
 gem 'config', '~> 1.7'
 
 # Templates, styles, JS
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails', '~> 4.3'
 gem 'sass-rails', '~> 5.0'
 gem 'slim-rails', '~> 3.1'
