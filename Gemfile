@@ -67,7 +67,7 @@ gem 'date_validator'
 # Other
 gem 'default_value_for', '~> 3.0', '>= 3.0.5'
 # Markdown https://github.com/vmg/redcarpet
-gem 'redcarpet', '~> 3.4'
+gem 'redcarpet', '~> 3.5'
 
 group :development, :test do
   gem 'database_cleaner', '~> 1.6'
