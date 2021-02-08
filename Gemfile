@@ -58,7 +58,7 @@ gem 'pundit', '~> 1.1'
 gem 'rack-cors', require: 'rack/cors'
 
 # Images upload and manipulation
-gem 'carrierwave', '~> 1.2'
+gem 'carrierwave', '~> 1.3'
 gem 'mini_magick', '~> 4.8'
 
 # Validations
