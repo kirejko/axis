@@ -46,7 +46,7 @@ gem 'redis-namespace', '~> 1.6'
 # Background delayed and cron jobs.
 # https://github.com/mperham/sidekiq
 # https://github.com/javan/whenever
-gem 'sidekiq', '~> 5.1'
+gem 'sidekiq', '~> 5.2'
 gem 'whenever', '~> 0.10.0', require: false
 
 # Better logging. https://github.com/roidrage/lograge
